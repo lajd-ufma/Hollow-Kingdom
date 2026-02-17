@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bjbf4qo1gdq0e"]
+
+[ext_resource type="Texture2D" uid="uid://cynv2lpfs26rj" path="res://assets/Enemies/Sprites/enemy_rpg.png" id="1_fbfpt"]
+[ext_resource type="Script" uid="uid://d322ve8wc0423" path="res://cenas/rafael.gd" id="1_usr7g"]
+[ext_resource type="Curve2D" uid="uid://bmi7n0ivx25f7" path="res://tres/rafael_paths/move_basica.tres" id="2_betai"]
+[ext_resource type="Script" uid="uid://dwd1y1vrkqxxu" path="res://cenas/rafael_body.gd" id="2_d8352"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fbfpt"]
+radius = 31.016125
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_usr7g"]
+radius = 43.046486
+
+[node name="Rafael" type="Node2D" unique_id=2110402888]
+script = ExtResource("1_usr7g")
+
+[node name="Path2D" type="Path2D" parent="." unique_id=482869886]
+curve = ExtResource("2_betai")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1371040234]
+position = Vector2(1240, 0)
+rotates = false
+loop = false
+
+[node name="rafael_body" type="CharacterBody2D" parent="Path2D/PathFollow2D" unique_id=617477463]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("2_d8352")
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/rafael_body" unique_id=858570448]
+scale = Vector2(4, 4)
+texture = ExtResource("1_fbfpt")
+hframes = 5
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/rafael_body" unique_id=201443341]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_fbfpt")
+
+[node name="hitbox" type="Area2D" parent="Path2D/PathFollow2D/rafael_body" unique_id=2002262972]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/rafael_body/hitbox" unique_id=1796227833]
+shape = SubResource("CircleShape2D_usr7g")
+disabled = true
+debug_color = Color(0.9995441, 0, 0.12405755, 0.41960785)
+
+[node name="hp" type="ProgressBar" parent="Path2D/PathFollow2D" unique_id=1739844759]
+offset_left = -76.0
+offset_top = -64.0
+offset_right = 92.0
+offset_bottom = -45.0
+value = 100.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="." unique_id=1349657521]
+wait_time = 8.0
+one_shot = true
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/rafael_body/hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

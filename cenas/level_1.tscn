@@ -10,9 +10,9 @@ size = Vector2(20, 253.5)
 
 [node name="Level_1" type="Node2D" unique_id=901747428]
 
-[node name="CharacterBody2D" parent="." unique_id=832522077 instance=ExtResource("1_4vb8i")]
+[node name="player" parent="." unique_id=832522077 instance=ExtResource("1_4vb8i")]
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1348933175]
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=1348933175]
 zoom = Vector2(8, 8)
 position_smoothing_speed = 8.0
 drag_left_margin = 0.5

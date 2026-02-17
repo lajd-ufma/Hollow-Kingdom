@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bvef8xvhwsnf6"]
+
+[ext_resource type="PackedScene" uid="uid://dtkf27wv3i44f" path="res://cenas/player.tscn" id="1_vse8g"]
+[ext_resource type="PackedScene" uid="uid://bjbf4qo1gdq0e" path="res://cenas/rafael.tscn" id="2_hoorn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hoorn"]
+size = Vector2(1323, 84)
+
+[node name="playground" type="Node2D" unique_id=2029256130]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=73572246]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=963240257]
+position = Vector2(626, 653)
+shape = SubResource("RectangleShape2D_hoorn")
+
+[node name="Rafael" parent="." unique_id=2110402888 instance=ExtResource("2_hoorn")]
+position = Vector2(8, 559)
+
+[node name="player" parent="." unique_id=832522077 instance=ExtResource("1_vse8g")]
+position = Vector2(133, 543)
+scale = Vector2(3, 3)

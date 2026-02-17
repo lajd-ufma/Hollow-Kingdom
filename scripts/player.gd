@@ -7,7 +7,7 @@ extends CharacterBody2D
 var movement = Vector2()
 
 @export_category("Jump variable")
-@export var jump_speed = 190.0
+@export var jump_speed = 250.0
 @export var acceleration = 290.0
 @export var jump_amount = 2
 
@@ -35,6 +35,24 @@ var dash_timer = Timer
 @onready var shoot := preload("res://cenas/shoot.tscn")
 @onready var spawnpoint_shoot: Marker2D = $spawnpoint_shoot
 @onready var barra_mana: ProgressBar = $hud/mana
+@onready var hp: ProgressBar = $hud/hp
+
+signal tomou_dano
+
+func _ready() -> void:
+	tomou_dano.connect(_on_tomou_dano)
+
+func _on_tomou_dano(value):
+	hp.value -= value
+	if hp.value<=0:
+		print("morreu")
+		get_tree().reload_current_scene()
+	else:
+		var tween_damage :=get_tree().create_tween()
+		var tween_knockback :=get_tree().create_tween()
+		tween_knockback.tween_property(self, "velocity:y", 100, 0.2)
+		tween_damage.tween_property(self, "modulate", Color.RED, 0.1)
+		tween_damage.tween_property(self, "modulate", Color.WHITE, 0.1)
 
 func _physics_process(delta: float) -> void:
 	if is_dashing == false:
@@ -169,11 +187,11 @@ func _on_anim_animation_finished(anim_name: StringName) -> void:
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_signal("tomou_dano"):
-		body.emit_signal("tomou_dano")
+		body.emit_signal("tomou_dano", 20)
 
 
 func _on_hitbox_down_body_entered(body: Node2D) -> void:
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "velocity:y", -100, 0.25)
 	if body.has_signal("tomou_dano"):
-		body.emit_signal("tomou_dano")
+		body.emit_signal("tomou_dano", 20)
