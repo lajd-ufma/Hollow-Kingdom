@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cynv2lpfs26rj" path="res://assets/Enemies/Sprites/enemy_rpg.png" id="1_fbfpt"]
 [ext_resource type="Script" uid="uid://d322ve8wc0423" path="res://cenas/rafael.gd" id="1_usr7g"]
-[ext_resource type="Curve2D" uid="uid://bmi7n0ivx25f7" path="res://tres/rafael_paths/move_basica.tres" id="2_betai"]
+[ext_resource type="Curve2D" uid="uid://dwej5bjshpbhc" path="res://tres/rafael_paths/return_to_start.tres" id="2_betai"]
 [ext_resource type="Script" uid="uid://dwd1y1vrkqxxu" path="res://cenas/rafael_body.gd" id="2_d8352"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fbfpt"]
@@ -18,7 +18,7 @@ script = ExtResource("1_usr7g")
 curve = ExtResource("2_betai")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1371040234]
-position = Vector2(1240, 0)
+position = Vector2(-13, -10)
 rotates = false
 loop = false
 
@@ -53,7 +53,6 @@ show_percentage = false
 
 [node name="Timer" type="Timer" parent="." unique_id=1349657521]
 wait_time = 8.0
-one_shot = true
 
 [connection signal="body_entered" from="Path2D/PathFollow2D/rafael_body/hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -4,15 +4,25 @@
 [ext_resource type="Curve2D" uid="uid://d3wvxmeeax1sd" path="res://tres/gabriel_paths/purificacao_move.tres" id="2_d4mgg"]
 [ext_resource type="Texture2D" uid="uid://cynv2lpfs26rj" path="res://assets/Enemies/Sprites/enemy_rpg.png" id="2_s6omv"]
 [ext_resource type="Script" uid="uid://d13y6v0m57oid" path="res://cenas/gabriel_body.gd" id="3_gdcay"]
+[ext_resource type="Shader" uid="uid://c2x25qwar67q2" path="res://cenas/gabriel.gdshader" id="5_4ji6v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdcay"]
 size = Vector2(21, 22)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ppkud"]
+shader = ExtResource("5_4ji6v")
+shader_parameter/progress = 0.0
+shader_parameter/glow_strength = 2.0
+shader_parameter/noise_speed = 1.5
+shader_parameter/color_start = Color(0.2, 0.8, 1, 1)
+shader_parameter/color_end = Color(1, 0.2, 0.2, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ji6v"]
 size = Vector2(39.75, 32)
 
 [node name="Gabriel" type="Node2D" unique_id=1668549009]
 script = ExtResource("1_qajb7")
+laser_damage = 4
 
 [node name="Path2D" type="Path2D" parent="." unique_id=2032978436]
 curve = ExtResource("2_d4mgg")
@@ -39,6 +49,8 @@ enabled = false
 exclude_parent = false
 
 [node name="Line2D" type="Line2D" parent="Path2D/PathFollow2D/gabriel_body" unique_id=1517941413]
+material = SubResource("ShaderMaterial_ppkud")
+points = PackedVector2Array(0, 0, 0, 0)
 width = 2.0
 
 [node name="hitbox" type="Area2D" parent="Path2D/PathFollow2D/gabriel_body" unique_id=2084460936]

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://b3o5ym71e157n"]
 
 [ext_resource type="PackedScene" uid="uid://dtkf27wv3i44f" path="res://cenas/player.tscn" id="1_4vb8i"]
+[ext_resource type="Script" uid="uid://cigg0cxnnwy7o" path="res://scripts/camera.gd" id="2_kfwrq"]
+[ext_resource type="PackedScene" uid="uid://bjbf4qo1gdq0e" path="res://cenas/rafael.tscn" id="3_8hq6r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vb8i"]
 size = Vector2(645, 17)
@@ -13,12 +15,13 @@ size = Vector2(20, 253.5)
 [node name="player" parent="." unique_id=832522077 instance=ExtResource("1_4vb8i")]
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1348933175]
-zoom = Vector2(8, 8)
+zoom = Vector2(2, 2)
 position_smoothing_speed = 8.0
 drag_left_margin = 0.5
 drag_top_margin = 0.5
 drag_right_margin = 0.5
 drag_bottom_margin = 0.5
+script = ExtResource("2_kfwrq")
 
 [node name="temporary_floor" type="StaticBody2D" parent="." unique_id=1751080817]
 
@@ -74,3 +77,7 @@ offset_top = -259.0
 offset_right = 54.0
 offset_bottom = -8.0
 color = Color(0, 0, 0, 1)
+
+[node name="Rafael" parent="." unique_id=2110402888 instance=ExtResource("3_8hq6r")]
+position = Vector2(225, 37)
+scale = Vector2(0.5, 0.5)

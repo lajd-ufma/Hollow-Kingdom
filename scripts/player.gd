@@ -39,6 +39,11 @@ var dash_timer = Timer
 
 signal tomou_dano
 
+func _process(delta: float) -> void:
+	horizontal_movement()
+	set_animations()
+	flip()
+
 func _ready() -> void:
 	tomou_dano.connect(_on_tomou_dano)
 
@@ -63,18 +68,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	wall_logic()
 
-func _process(delta: float) -> void:
-	horizontal_movement()
-	set_animations()
-	flip()
-
 func _input(event: InputEvent) -> void:
 	jump_logic()
 	if Input.is_action_just_pressed("special") and barra_mana.value-3>0:
 		barra_mana.value-=3
 		var shoot_instance = shoot.instantiate()
-		shoot_instance.global_position = spawnpoint_shoot.position
-		add_child(shoot_instance)
+		shoot_instance.global_position = spawnpoint_shoot.global_position
+		shoot_instance.direction = 1 if facing_right else -1
+		get_tree().root.add_child(shoot_instance)
 	elif Input.is_action_just_pressed("atack"):
 		if Input.is_action_pressed("up"):
 			is_atacking_up = true
