@@ -48,16 +48,17 @@ func _ready() -> void:
 	tomou_dano.connect(_on_tomou_dano)
 
 func _on_tomou_dano(value):
-	hp.value -= value
-	if hp.value<=0:
-		print("morreu")
-		get_tree().reload_current_scene()
-	else:
-		var tween_damage :=get_tree().create_tween()
-		var tween_knockback :=get_tree().create_tween()
-		tween_knockback.tween_property(self, "velocity:y", 100, 0.2)
-		tween_damage.tween_property(self, "modulate", Color.RED, 0.1)
-		tween_damage.tween_property(self, "modulate", Color.WHITE, 0.1)
+	if !is_dashing:
+		hp.value -= value
+		if hp.value<=0:
+			print("morreu")
+			get_tree().reload_current_scene()
+		else:
+			var tween_damage :=get_tree().create_tween()
+			var tween_knockback :=get_tree().create_tween()
+			tween_knockback.tween_property(self, "velocity:y", 100, 0.2)
+			tween_damage.tween_property(self, "modulate", Color.RED, 0.1)
+			tween_damage.tween_property(self, "modulate", Color.WHITE, 0.1)
 
 func _physics_process(delta: float) -> void:
 	if is_dashing == false:

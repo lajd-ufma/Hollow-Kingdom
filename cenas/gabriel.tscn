@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c618pbs6s4tv4" path="res://cenas/gabriel.gd" id="1_qajb7"]
 [ext_resource type="Curve2D" uid="uid://d3wvxmeeax1sd" path="res://tres/gabriel_paths/purificacao_move.tres" id="2_d4mgg"]
+[ext_resource type="PackedScene" uid="uid://cxh6djix4dlyb" path="res://cenas/laser_rain_segment.tscn" id="2_ppkud"]
 [ext_resource type="Texture2D" uid="uid://cynv2lpfs26rj" path="res://assets/Enemies/Sprites/enemy_rpg.png" id="2_s6omv"]
+[ext_resource type="PackedScene" uid="uid://dkqpxlla7oxxm" path="res://cenas/shock_wave.tscn" id="3_acejx"]
 [ext_resource type="Script" uid="uid://d13y6v0m57oid" path="res://cenas/gabriel_body.gd" id="3_gdcay"]
 [ext_resource type="Shader" uid="uid://c2x25qwar67q2" path="res://cenas/gabriel.gdshader" id="5_4ji6v"]
 
@@ -22,7 +24,11 @@ size = Vector2(39.75, 32)
 
 [node name="Gabriel" type="Node2D" unique_id=1668549009]
 script = ExtResource("1_qajb7")
-laser_damage = 4
+rain_scene = ExtResource("2_ppkud")
+spacing_factor = 0.75
+ground_y = 600.0
+shake_time = 3.0
+shockwave_scene = ExtResource("3_acejx")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=2032978436]
 curve = ExtResource("2_d4mgg")
@@ -31,35 +37,37 @@ curve = ExtResource("2_d4mgg")
 position = Vector2(1240, 0)
 rotates = false
 
-[node name="gabriel_body" type="CharacterBody2D" parent="Path2D/PathFollow2D" unique_id=79263583]
+[node name="Pivot" type="Node2D" parent="Path2D/PathFollow2D" unique_id=933171787]
+
+[node name="gabriel_body" type="CharacterBody2D" parent="Path2D/PathFollow2D/Pivot" unique_id=79263583]
 scale = Vector2(4, 4)
 script = ExtResource("3_gdcay")
 
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/gabriel_body" unique_id=1158473157]
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=1158473157]
 texture = ExtResource("2_s6omv")
 hframes = 5
 vframes = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/gabriel_body" unique_id=26768209]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=26768209]
 position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_gdcay")
 
-[node name="RayCast2D" type="RayCast2D" parent="Path2D/PathFollow2D/gabriel_body" unique_id=943954107]
+[node name="RayCast2D" type="RayCast2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=943954107]
 enabled = false
 exclude_parent = false
 
-[node name="Line2D" type="Line2D" parent="Path2D/PathFollow2D/gabriel_body" unique_id=1517941413]
+[node name="Line2D" type="Line2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=1517941413]
 material = SubResource("ShaderMaterial_ppkud")
 points = PackedVector2Array(0, 0, 0, 0)
 width = 2.0
 
-[node name="hitbox" type="Area2D" parent="Path2D/PathFollow2D/gabriel_body" unique_id=2084460936]
+[node name="hitbox" type="Area2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=2084460936]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/gabriel_body/hitbox" unique_id=1261043237]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body/hitbox" unique_id=1261043237]
 position = Vector2(-4.375, -2)
 shape = SubResource("RectangleShape2D_4ji6v")
 
-[node name="hp" type="ProgressBar" parent="Path2D/PathFollow2D" unique_id=366702955]
+[node name="hp" type="ProgressBar" parent="Path2D/PathFollow2D/Pivot" unique_id=366702955]
 offset_left = -76.0
 offset_top = -64.0
 offset_right = 92.0

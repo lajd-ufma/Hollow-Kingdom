@@ -14,10 +14,6 @@ config/name="Hollow Kingdom"
 run/main_scene="uid://b3o5ym71e157n"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
-[autoload]
-
-Dialogic="uid://ds2q0uclmolvu"
-
 [dialogic]
 
 directories/dch_directory={}
