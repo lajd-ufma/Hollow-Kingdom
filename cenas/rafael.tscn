@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cynv2lpfs26rj" path="res://assets/Enemies/Sprites/enemy_rpg.png" id="1_fbfpt"]
 [ext_resource type="Script" uid="uid://d322ve8wc0423" path="res://cenas/rafael.gd" id="1_usr7g"]
-[ext_resource type="Curve2D" uid="uid://dwej5bjshpbhc" path="res://tres/rafael_paths/return_to_start.tres" id="2_betai"]
+[ext_resource type="Curve2D" uid="uid://trcf4f1pvgh" path="res://tres/rafael_paths/ataque_queda.tres" id="2_betai"]
 [ext_resource type="Script" uid="uid://dwd1y1vrkqxxu" path="res://cenas/rafael_body.gd" id="2_d8352"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fbfpt"]
