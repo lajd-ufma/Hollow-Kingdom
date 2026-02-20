@@ -16,7 +16,6 @@ shape = SubResource("RectangleShape2D_hoorn")
 
 [node name="Rafael" parent="." unique_id=2110402888 instance=ExtResource("2_hoorn")]
 position = Vector2(1241, 569)
-speed_path_follow = null
 
 [node name="rafael_spawn_point" type="Marker2D" parent="." unique_id=2021542487]
 position = Vector2(1248, 563)

@@ -44,6 +44,8 @@ rotates = false
 
 [node name="gabriel_body" type="CharacterBody2D" parent="Path2D/PathFollow2D/Pivot" unique_id=79263583]
 scale = Vector2(4, 4)
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("3_gdcay")
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=1158473157]

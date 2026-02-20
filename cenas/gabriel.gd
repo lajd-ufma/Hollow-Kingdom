@@ -60,20 +60,17 @@ var stored_progress: float = 0.0
 var is_attacking := false
 var can_move := true
 
+@onready var hp: ProgressBar = $Path2D/PathFollow2D/Pivot/hp
+@onready var body: CharacterBody2D = $Path2D/PathFollow2D/Pivot/gabriel_body
 
-# ============================================================
-# READY
-# ============================================================
 
 func _ready():
+	body.tomou_dano.connect(_on_tomou_dano)
 	randomize()
 
-	# 🔴 ESSENCIAL → impede o PathFollow de empurrar o boss pro lado
 	path_follow.rotates = false
 	path_follow.h_offset = 0
 	path_follow.v_offset = 0
-
-	gabriel_body.tomou_dano_request.connect(_on_tomou_dano)
 
 	attack_timer.wait_time = attack_cooldown
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
@@ -377,4 +374,11 @@ func spawn_single_feather(cam: Camera2D) -> void:
 # ============================================================
 
 func _on_tomou_dano(value):
-	print("Gabriel tomou dano:", value)
+
+	hp.value -= value
+
+	if hp.value <= 0:
+		queue_free()
+	else:
+		var damage_tween := get_tree().create_tween()
+		damage_tween.tween_property(self, "modulate", Color.WHITE, 0.2)

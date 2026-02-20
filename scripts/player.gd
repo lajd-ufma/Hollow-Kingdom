@@ -52,7 +52,8 @@ func _on_tomou_dano(value):
 		hp.value -= value
 		if hp.value<=0:
 			print("morreu")
-			get_tree().reload_current_scene()
+			#get_tree().quit()
+			#get_tree().change_scene_to_file("res://cenas/morte.tscn")
 		else:
 			var tween_damage :=get_tree().create_tween().set_loops(3)
 			var tween_knockback :=get_tree().create_tween().set_parallel(true)

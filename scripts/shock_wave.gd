@@ -4,9 +4,6 @@ extends Area2D
 var direction := 1
 var damage: int = 3
 
-func _ready():
-	connect("body_entered", _on_body_entered)
-
 func _process(delta):
 	position.x += speed * direction * delta
 

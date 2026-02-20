@@ -124,11 +124,11 @@ func _process(delta):
 		# RETORNO AO PONTO INICIAL
 		# -----------------------------------------
 		"returning":
-
 			path_follow_2d.progress += speed_path_follow * delta
 
 			if path_follow_2d.progress_ratio >= 1.0:
 				_finish_return()
+				
 
 
 # =====================================================
@@ -196,9 +196,9 @@ func _end_dive():
 	current_state = "ground_pause"
 
 	await get_tree().create_timer(ground_pause_time).timeout
-
+	
+	hitbox_collision_shape_2d.disabled = false
 	_start_return()
-
 
 # =====================================================
 # INÍCIO DO RETORNO
@@ -257,6 +257,4 @@ func _on_tomou_dano(value):
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-
-	if current_state == "horizontal_attack" or current_state == "diving":
-		body.emit_signal("tomou_dano", 3)
+	body.emit_signal("tomou_dano", 3)
