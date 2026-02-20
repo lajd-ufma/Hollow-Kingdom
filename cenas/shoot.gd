@@ -1,7 +1,8 @@
 extends Area2D
 
+@export var damage := 40
+@export var speed = 10
 var direction = 1
-const speed = 10
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().create_timer(3).timeout
@@ -12,5 +13,5 @@ func _process(delta: float) -> void:
 	position.x+= speed*direction
 
 func _on_body_entered(body: Node2D) -> void:
-	body.emit_signal("tomou_dano")
+	body.emit_signal("tomou_dano", damage)
 	queue_free()

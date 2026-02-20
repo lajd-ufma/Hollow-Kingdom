@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cxh6djix4dlyb"]
+
+[ext_resource type="Script" uid="uid://b3sdwh2f1o25a" path="res://scripts/laser_boss.gd" id="1_e0dm4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5h66"]
+size = Vector2(20, 720)
+
+[node name="LaserRainSegment" type="Area2D" unique_id=1993041122]
+scale = Vector2(0.9009419, 0.57148695)
+collision_layer = 4
+script = ExtResource("1_e0dm4")
+fall_speed = 1700.0
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1677984398]
+points = PackedVector2Array(0, 0, 0, 720)
+width = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=519957166]
+position = Vector2(0, 360)
+shape = SubResource("RectangleShape2D_f5h66")
+
+[node name="ImpactTimer" type="Timer" parent="." unique_id=1801489579]
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=603303005]
+target_position = Vector2(1, 727)
+collision_mask = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

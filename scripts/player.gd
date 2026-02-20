@@ -7,7 +7,7 @@ extends CharacterBody2D
 var movement = Vector2()
 
 @export_category("Jump variable")
-@export var jump_speed = 190.0
+@export var jump_speed = 250.0
 @export var acceleration = 290.0
 @export var jump_amount = 2
 
@@ -35,6 +35,34 @@ var dash_timer = Timer
 @onready var shoot := preload("res://cenas/shoot.tscn")
 @onready var spawnpoint_shoot: Marker2D = $spawnpoint_shoot
 @onready var barra_mana: ProgressBar = $hud/mana
+@onready var hp: ProgressBar = $hud/hp
+
+signal tomou_dano
+
+func _process(delta: float) -> void:
+	horizontal_movement()
+	set_animations()
+	flip()
+
+func _ready() -> void:
+	tomou_dano.connect(_on_tomou_dano)
+
+func _on_tomou_dano(value):
+	if !is_dashing:
+		hp.value -= value
+		if hp.value<=0:
+			print("morreu")
+			#get_tree().quit()
+			#get_tree().change_scene_to_file("res://cenas/morte.tscn")
+		else:
+			var tween_damage :=get_tree().create_tween().set_loops(3)
+			var tween_knockback :=get_tree().create_tween().set_parallel(true)
+			set_collision_mask_value(3, false)
+			tween_knockback.tween_property(self, "velocity", Vector2(-200,150), 0.25)
+			tween_damage.tween_property(self, "modulate", Color.RED, 0.1)
+			tween_damage.tween_property(self, "modulate", Color.WHITE, 0.1)
+			await tween_damage.finished
+			set_collision_mask_value(3, true)
 
 func _physics_process(delta: float) -> void:
 	if is_dashing == false:
@@ -45,18 +73,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	wall_logic()
 
-func _process(delta: float) -> void:
-	horizontal_movement()
-	set_animations()
-	flip()
-
 func _input(event: InputEvent) -> void:
 	jump_logic()
 	if Input.is_action_just_pressed("special") and barra_mana.value-3>0:
 		barra_mana.value-=3
 		var shoot_instance = shoot.instantiate()
-		shoot_instance.global_position = spawnpoint_shoot.position
-		add_child(shoot_instance)
+		shoot_instance.global_position = spawnpoint_shoot.global_position
+		shoot_instance.direction = 1 if facing_right else -1
+		get_tree().root.add_child(shoot_instance)
 	elif Input.is_action_just_pressed("atack"):
 		if Input.is_action_pressed("up"):
 			is_atacking_up = true
@@ -169,11 +193,11 @@ func _on_anim_animation_finished(anim_name: StringName) -> void:
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_signal("tomou_dano"):
-		body.emit_signal("tomou_dano")
+		body.emit_signal("tomou_dano", 20)
 
 
 func _on_hitbox_down_body_entered(body: Node2D) -> void:
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "velocity:y", -100, 0.25)
 	if body.has_signal("tomou_dano"):
-		body.emit_signal("tomou_dano")
+		body.emit_signal("tomou_dano", 20)

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://pwjceowvmbia"]
+
+[ext_resource type="Script" uid="uid://mtgwj0wb5gnu" path="res://scripts/feather.gd" id="1_0r32a"]
+[ext_resource type="Texture2D" uid="uid://ca445uchvhqnh" path="res://assets/Plume 16x16.png" id="1_wtcfe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
+
+[node name="Node2D" type="Area2D" unique_id=270442825]
+script = ExtResource("1_0r32a")
+max_amplitude = 70.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=194426149]
+shape = SubResource("RectangleShape2D_0e48y")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1687683616]
+texture = ExtResource("1_wtcfe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
