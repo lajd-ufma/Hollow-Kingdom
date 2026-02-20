@@ -9,16 +9,9 @@ size = Vector2(645, 17)
 size = Vector2(20, 253.5)
 
 [node name="Level_1" type="Node2D" unique_id=901747428]
+position = Vector2(538, 635)
 
-[node name="CharacterBody2D" parent="." unique_id=832522077 instance=ExtResource("1_4vb8i")]
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1348933175]
-zoom = Vector2(8, 8)
-position_smoothing_speed = 8.0
-drag_left_margin = 0.5
-drag_top_margin = 0.5
-drag_right_margin = 0.5
-drag_bottom_margin = 0.5
+[node name="player" parent="." unique_id=832522077 instance=ExtResource("1_4vb8i")]
 
 [node name="temporary_floor" type="StaticBody2D" parent="." unique_id=1751080817]
 
@@ -32,6 +25,7 @@ offset_top = 60.0
 offset_right = 346.0
 offset_bottom = 73.0
 color = Color(0.0022132683, 0.0007310465, 0.00012347521, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Temporary_wall_1" type="StaticBody2D" parent="." unique_id=218574256]
 collision_layer = 2
@@ -46,6 +40,7 @@ offset_top = -188.0
 offset_right = 309.0
 offset_bottom = 63.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Temporary_wall_2" type="StaticBody2D" parent="." unique_id=1538580356]
 collision_layer = 2
@@ -60,6 +55,7 @@ offset_top = -190.0
 offset_right = -55.0
 offset_bottom = 61.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Temporary_wall_3" type="StaticBody2D" parent="." unique_id=1176486312]
 collision_layer = 2
@@ -74,3 +70,4 @@ offset_top = -259.0
 offset_right = 54.0
 offset_bottom = -8.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://dkqpxlla7oxxm"]
+
+[ext_resource type="Script" uid="uid://cof53wnai5baw" path="res://scripts/shock_wave.gd" id="1_m2s5s"]
+[ext_resource type="Texture2D" uid="uid://bk6rhm1rjibhl" path="res://assets/Interactables/Sprites/spikes_spritesheet.png" id="2_dg1ug"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bruyc"]
+
+[sub_resource type="Animation" id="Animation_i2q7w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jkbsm"]
+resource_name = "idle"
+length = 0.35
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.19906323),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ydk01"]
+_data = {
+&"RESET": SubResource("Animation_i2q7w"),
+&"idle": SubResource("Animation_jkbsm")
+}
+
+[node name="ShockWave" type="Area2D" unique_id=1908039597]
+scale = Vector2(1.6, 1.6)
+collision_layer = 4
+script = ExtResource("1_m2s5s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=286850698]
+scale = Vector2(1.6, 1.6)
+shape = SubResource("RectangleShape2D_bruyc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=879366148]
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("2_dg1ug")
+hframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=785305122]
+libraries/ = SubResource("AnimationLibrary_ydk01")
+autoplay = &"idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

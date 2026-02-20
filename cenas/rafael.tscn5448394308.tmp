@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bjbf4qo1gdq0e"]
+
+[ext_resource type="Texture2D" uid="uid://cynv2lpfs26rj" path="res://assets/Enemies/Sprites/enemy_rpg.png" id="1_fbfpt"]
+[ext_resource type="Script" uid="uid://d322ve8wc0423" path="res://cenas/rafael.gd" id="1_usr7g"]
+
+[sub_resource type="Curve2D" id="Curve2D_fbfpt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1240, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1240, 0)
+}
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fbfpt"]
+radius = 59.665737
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_usr7g"]
+radius = 82.0
+
+[node name="Rafael" type="Node2D" unique_id=2110402888]
+script = ExtResource("1_usr7g")
+
+[node name="Path2D" type="Path2D" parent="." unique_id=482869886]
+curve = SubResource("Curve2D_fbfpt")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1371040234]
+position = Vector2(1240, 0)
+rotates = false
+
+[node name="body" type="CharacterBody2D" parent="Path2D/PathFollow2D" unique_id=617477463]
+collision_layer = 4
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/body" unique_id=858570448]
+scale = Vector2(8, 8)
+texture = ExtResource("1_fbfpt")
+hframes = 5
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/body" unique_id=201443341]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_fbfpt")
+
+[node name="hitbox" type="Area2D" parent="Path2D/PathFollow2D/body" unique_id=2002262972]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/body/hitbox" unique_id=1796227833]
+shape = SubResource("CircleShape2D_usr7g")
+disabled = true
+debug_color = Color(0.9995441, 0, 0.12405755, 0.41960785)
+
+[node name="hp" type="ProgressBar" parent="Path2D/PathFollow2D" unique_id=1739844759]
+offset_left = -76.0
+offset_top = -64.0
+offset_right = 92.0
+offset_bottom = -45.0
+value = 100.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="." unique_id=1349657521]
+wait_time = 8.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://hcm4fr7td736"]
+
+[ext_resource type="PackedScene" uid="uid://d30kaype5tjfu" path="res://cenas/gabriel.tscn" id="1_oqq21"]
+[ext_resource type="PackedScene" uid="uid://dtkf27wv3i44f" path="res://cenas/player.tscn" id="2_xta1u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkqqn"]
+
+[node name="playground2" type="Node2D" unique_id=102589438]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=223480952]
+position = Vector2(637.00006, 672)
+scale = Vector2(60.148964, -3.4468887)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1725259941]
+position = Vector2(0.09975132, -2.030817)
+scale = Vector2(1.0598513, 0.99999994)
+shape = SubResource("RectangleShape2D_wkqqn")
+
+[node name="Gabriel" parent="." unique_id=1668549009 instance=ExtResource("1_oqq21")]
+position = Vector2(25, 285)
+
+[node name="player" parent="." unique_id=832522077 instance=ExtResource("2_xta1u")]
+position = Vector2(519, 611)
+acceleration = 500.0
