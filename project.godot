@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Hollow Kingdom"
-run/main_scene="uid://b3o5ym71e157n"
+config/name="Alvorada dos Profanos"
+run/main_scene="uid://y6q8lsw4uik7"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]
