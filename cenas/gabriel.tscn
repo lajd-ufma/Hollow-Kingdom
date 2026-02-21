@@ -8,9 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://pwjceowvmbia" path="res://cenas/feather.tscn" id="3_tds4j"]
 [ext_resource type="Shader" uid="uid://c2x25qwar67q2" path="res://cenas/gabriel.gdshader" id="5_4ji6v"]
 [ext_resource type="Texture2D" uid="uid://d0258lnmhiyqy" path="res://assets/Autorais/Gabriel-Serafim/Gabriel.serafim.png" id="7_tds4j"]
+[ext_resource type="Texture2D" uid="uid://c56j37txp404e" path="res://assets/Autorais/etc/explosao.png" id="9_wln82"]
+[ext_resource type="Texture2D" uid="uid://bsh2y38iwjruc" path="res://assets/Autorais/Gabriel-Serafim/morto.png" id="10_rkwu1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tds4j"]
-radius = 33.545677
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wln82"]
+radius = 25.0
+height = 95.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppkud"]
 shader = ExtResource("5_4ji6v")
@@ -38,6 +41,42 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_tds4j")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
 
 [sub_resource type="Animation" id="Animation_6tf11"]
 resource_name = "idle"
@@ -55,12 +94,105 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_tds4j")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_hkyf4"]
+resource_name = "morrendo"
+length = 1.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("9_wln82"), ExtResource("10_rkwu1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.87860984),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wln82"]
 _data = {
 &"RESET": SubResource("Animation_tds4j"),
-&"idle": SubResource("Animation_6tf11")
+&"idle": SubResource("Animation_6tf11"),
+&"morrendo": SubResource("Animation_hkyf4")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkwu1"]
+height = 96.0
 
 [node name="Gabriel" type="Node2D" unique_id=1668549009]
 script = ExtResource("1_qajb7")
@@ -93,8 +225,8 @@ hframes = 3
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=26768209]
-position = Vector2(-0.5, -1)
-shape = SubResource("CircleShape2D_tds4j")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_wln82")
 debug_color = Color(3.85046e-07, 0.6107864, 0.6352338, 0.41960785)
 
 [node name="RayCast2D" type="RayCast2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=943954107]
@@ -109,7 +241,6 @@ width = 2.0
 [node name="hitbox" type="Area2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=2084460936]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body/hitbox" unique_id=1261043237]
-position = Vector2(-1.25, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_tds4j")
 debug_color = Color(0.9317671, 2.9359759e-05, 0.6534741, 0.41960785)
@@ -117,6 +248,10 @@ debug_color = Color(0.9317671, 2.9359759e-05, 0.6534741, 0.41960785)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=543762768]
 libraries/ = SubResource("AnimationLibrary_wln82")
 autoplay = &"idle"
+
+[node name="collision_pos_morte" type="CollisionShape2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=1281326211]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_rkwu1")
 
 [node name="hp" type="ProgressBar" parent="Path2D/PathFollow2D/Pivot" unique_id=366702955]
 offset_left = -76.0
@@ -129,3 +264,5 @@ show_percentage = false
 [node name="AttackTimer" type="Timer" parent="." unique_id=1119212732]
 
 [node name="LaserTimer" type="Timer" parent="." unique_id=391510656]
+
+[connection signal="animation_finished" from="Path2D/PathFollow2D/Pivot/gabriel_body/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -22,6 +22,7 @@ extends Node2D
 @onready var hp: ProgressBar = $Path2D/PathFollow2D/hp
 @onready var rafael_spawn_point: Marker2D = $"../rafael_spawn_point"
 @onready var player: CharacterBody2D = $"../player"
+@onready var animation_player: AnimationPlayer = $Path2D/PathFollow2D/rafael_body/AnimationPlayer
 
 signal tomou_dano
 
@@ -250,7 +251,7 @@ func _on_tomou_dano(value):
 	hp.value -= value
 
 	if hp.value <= 0:
-		queue_free()
+		call_deferred("_morrer")
 	else:
 		var damage_tween := get_tree().create_tween()
 		damage_tween.tween_property(self, "modulate", Color.WHITE, 0.2)
@@ -258,3 +259,14 @@ func _on_tomou_dano(value):
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	body.emit_signal("tomou_dano", 3)
+
+func _morrer():
+	hp.visible = false
+	hitbox_collision_shape_2d.disabled = false
+	speed_path_follow = 0 
+	animation_player.play("morrendo")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	await get_tree().create_timer(3).timeout
+	queue_free()

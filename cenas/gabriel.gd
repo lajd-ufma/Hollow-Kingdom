@@ -49,7 +49,9 @@ extends Node2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var gabriel_body = $Path2D/PathFollow2D/Pivot/gabriel_body
 @onready var hitbox_collision_shape_2d: CollisionShape2D = $Path2D/PathFollow2D/Pivot/gabriel_body/hitbox/CollisionShape2D
-
+@onready var animation_player: AnimationPlayer = $Path2D/PathFollow2D/Pivot/gabriel_body/AnimationPlayer
+@onready var hp: ProgressBar = $Path2D/PathFollow2D/Pivot/hp
+@onready var body: CharacterBody2D = $Path2D/PathFollow2D/Pivot/gabriel_body
 
 # ============================================================
 # ESTADO
@@ -60,12 +62,11 @@ var on_path: bool = true
 var stored_progress: float = 0.0
 var is_attacking := false
 var can_move := true
-
-@onready var hp: ProgressBar = $Path2D/PathFollow2D/Pivot/hp
-@onready var body: CharacterBody2D = $Path2D/PathFollow2D/Pivot/gabriel_body
+var is_dead := false
 
 
 func _ready():
+	set_physics_process(false)
 	body.tomou_dano.connect(_on_tomou_dano)
 	randomize()
 
@@ -77,6 +78,9 @@ func _ready():
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
 	attack_timer.start()
 
+func _physics_process(delta: float) -> void:
+	body.velocity += body.get_gravity() * delta
+	body.move_and_slide()
 
 # ============================================================
 # MOVIMENTO NORMAL DO BOSS
@@ -92,7 +96,7 @@ func _process(delta):
 
 func _on_attack_timer_timeout():
 
-	if is_attacking:
+	if is_attacking or is_dead:
 		return
 
 	is_attacking = true
@@ -113,7 +117,7 @@ func _on_attack_timer_timeout():
 
 
 # ============================================================
-# ATAQUE 1 — CHUVA DE RAIOS (INALTERADO)
+# ATAQUE 1 — CHUVA DE RAIOS
 # ============================================================
 
 func rain_attack_sequence() -> void:
@@ -148,7 +152,7 @@ func spawn_rain_bar(x_position: float):
 
 
 # ============================================================
-# ATAQUE 2 — SLAM (AGORA 100% ESTÁVEL)
+# ATAQUE 2 — SLAM
 # ============================================================
 
 func slam_attack_sequence() -> void:
@@ -160,9 +164,8 @@ func slam_attack_sequence() -> void:
 	# guarda progresso no path
 	stored_progress = path_follow.progress
 
-	# 🔴 SOLTA DO PATH DO JEITO CERTO (SEM QUEBRAR POSIÇÃO)
 	original_parent = pivot.get_parent()
-	pivot.reparent(get_tree().current_scene, true) # <-- ESSA LINHA CONSERTA TUDO
+	pivot.reparent(get_tree().current_scene, true) 
 
 	await shake_warning()
 	await slam_down()
@@ -173,26 +176,21 @@ func slam_attack_sequence() -> void:
 
 	await return_from_slam()
 
-	# 🔵 VOLTA PRO PATH SEM TELEPORTAR
 	pivot.reparent(original_parent, true)
 
-	# reposiciona o PathFollow de volta onde estava
 	path_follow.progress = stored_progress
 
 	pivot.position = Vector2.ZERO
 
 	can_move = true
 
-	# solta do PathFollow (AGORA ele fica livre de verdade)
 	original_parent = pivot.get_parent()
 
-	# guarda posição mundial antes de soltar
 	var saved_global := pivot.global_position
 
 	original_parent.remove_child(pivot)
 	get_tree().current_scene.add_child(pivot)
 
-	# restaura posição mundial (impede ir pro 0,0)
 	pivot.global_position = saved_global
 
 	await shake_warning()
@@ -204,7 +202,6 @@ func slam_attack_sequence() -> void:
 
 	await return_from_slam()
 
-	# devolve pro trilho
 	saved_global = pivot.global_position
 
 	get_tree().current_scene.remove_child(pivot)
@@ -275,7 +272,7 @@ func shake_warning() -> void:
 
 
 # ============================================================
-# DESCER RETO (SEM INTERFERIR NO PATH)
+# DESCER RETO
 # ============================================================
 
 func slam_down() -> void:
@@ -300,13 +297,8 @@ func return_from_slam() -> void:
 	var target_y: float = original_parent.global_position.y
 
 	while abs(pivot.global_position.y - target_y) > 2.0:
-
 		pivot.global_position.y = lerp(pivot.global_position.y, target_y, 0.15)
-
 		await get_tree().process_frame
-
-
-
 
 # ============================================================
 # ONDA SÍSMICA
@@ -330,7 +322,7 @@ func spawn_shockwaves():
 	right_wave.direction = 1
 
 # ============================================================
-# ATAQUE 3 — PENAS DE FOGO (CAÓTICO)
+# ATAQUE 3 — PENAS DE FOGO
 # ============================================================
 
 func feather_attack_sequence() -> void:
@@ -353,13 +345,11 @@ func feather_attack_sequence() -> void:
 
 func spawn_single_feather(cam: Camera2D) -> void:
 
-	# pega o retângulo visível da câmera NO MUNDO
 	var view_size = get_viewport_rect().size * cam.zoom
 
 	var left_limit  = cam.global_position.x - (view_size.x / 2.0)
 	var right_limit = cam.global_position.x + (view_size.x / 2.0)
 
-	# aplica padding pra não nascer colado na borda
 	left_limit  += feather_horizontal_padding
 	right_limit -= feather_horizontal_padding
 
@@ -379,7 +369,24 @@ func _on_tomou_dano(value):
 	hp.value -= value
 
 	if hp.value <= 0:
-		queue_free()
+		is_dead = true
+		call_deferred("_morrer")
 	else:
 		var damage_tween := get_tree().create_tween()
 		damage_tween.tween_property(self, "modulate", Color.WHITE, 0.2)
+
+func _morrer():
+	can_move = false
+	$Path2D/PathFollow2D/Pivot/gabriel_body/CollisionShape2D.queue_free()
+	body.set_collision_layer_value(3, false)
+	body.set_collision_mask_value(1, false)
+	set_physics_process(true)
+	hp.visible = false
+	hitbox_collision_shape_2d.disabled = true
+	speed_path_follow = 0 
+	animation_player.play("morrendo")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	await get_tree().create_timer(3).timeout
+	queue_free()
