@@ -1,7 +1,21 @@
 [gd_scene format=3 uid="uid://40qt7fo4q8yr"]
 
+[ext_resource type="Script" uid="uid://bjqm6qklv0yi5" path="res://cenas/telas/botao_generico.gd" id="1_od8dp"]
+[ext_resource type="Texture2D" uid="uid://ca445uchvhqnh" path="res://assets/Plume 16x16.png" id="1_wn4rv"]
+
 [node name="Button" type="Button" unique_id=2112732080]
 offset_right = 8.0
 offset_bottom = 8.0
+pivot_offset = Vector2(60, 30)
 theme_override_font_sizes/font_size = 36
 text = "JOGAR"
+script = ExtResource("1_od8dp")
+
+[node name="pluma" type="Sprite2D" parent="." unique_id=1329750379]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-34, 32)
+scale = Vector2(2, 2.068)
+texture = ExtResource("1_wn4rv")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

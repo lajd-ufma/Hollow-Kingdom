@@ -1,91 +1,89 @@
 [gd_scene format=3 uid="uid://re2b15mymeqn"]
 
-[ext_resource type="Script" uid="uid://o8hx4cfokk1x" path="res://cenas/telas/credits_screen.gd" id="1_3uvmg"]
+[ext_resource type="PackedScene" uid="uid://40qt7fo4q8yr" path="res://cenas/telas/BotaoGenerico.tscn" id="1_3uvmg"]
 
-[node name="CreditsScreen" type="Control" unique_id=1469082065]
-layout_mode = 3
+[sub_resource type="GDScript" id="GDScript_g04ip"]
+script/source = "extends Control
+
+
+func _on_voltar_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://cenas/telas/MenuPrincipal.tscn\")
+"
+
+[node name="CreditsScreen" type="ColorRect" unique_id=572263929]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3uvmg")
+color = Color(0.17254902, 0.17254902, 0.17254902, 1)
+script = SubResource("GDScript_g04ip")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=831500229]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.5818361, 0.43309915, 0.9719865, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1231165717]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TittleCredits" type="Label" parent="MarginContainer" unique_id=39879670]
-layout_mode = 2
+[node name="TittleCredits" type="Label" parent="." unique_id=39879670]
+layout_mode = 0
+offset_left = 487.0
+offset_right = 792.0
+offset_bottom = 88.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 64
 text = "CRÉDITOS"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1344101980]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -185.0
-offset_top = -236.5
-offset_right = 185.0
-offset_bottom = 236.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-
-[node name="EquipeProgramacao" type="Label" parent="VBoxContainer" unique_id=1761112677]
-layout_mode = 2
+[node name="EquipeProgramacao" type="Label" parent="." unique_id=1761112677]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 103.0
+offset_right = 750.0
+offset_bottom = 153.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 32
-text = "Equipe de Programação"
+theme_override_font_sizes/font_size = 36
+text = "Programação"
 
-[node name="Programadores" type="Label" parent="VBoxContainer" unique_id=199710302]
-layout_mode = 2
+[node name="Programadores" type="Label" parent="." unique_id=199710302]
+layout_mode = 0
+offset_left = 586.0
+offset_top = 154.0
+offset_right = 686.0
+offset_bottom = 336.0
 size_flags_horizontal = 4
-text = "Pedro
-Emerton
-Diego
-Flávio
-Vinicius
-"
+theme_override_font_sizes/font_size = 24
+text = "Pedro,
+Diego,
+Vinicius,
+Flávio,
+Emerton"
 
-[node name="EquipeArte" type="Label" parent="VBoxContainer" unique_id=1970243723]
-layout_mode = 2
+[node name="EquipeArte" type="Label" parent="." unique_id=549871667]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 351.0
+offset_right = 762.0
+offset_bottom = 401.0
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 32
-text = "Equipe de Arte e Música
-"
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 36
+text = "Arte e Música"
 
-[node name="Artistas" type="Label" parent="VBoxContainer" unique_id=212223728]
-layout_mode = 2
+[node name="Artistas" type="Label" parent="." unique_id=212223728]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 407.0
+offset_right = 684.0
+offset_bottom = 478.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "Emerton
-Airam"
+theme_override_font_sizes/font_size = 24
+text = "Airam,
+Emerton"
 
-[node name="voltar" type="Button" parent="VBoxContainer" unique_id=455282996]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 32
+[node name="voltar" parent="." unique_id=2112732080 instance=ExtResource("1_3uvmg")]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 555.0
+offset_right = 721.0
+offset_bottom = 624.0
+theme_override_font_sizes/font_size = 44
 text = "VOLTAR"
 
-[connection signal="pressed" from="VBoxContainer/voltar" to="." method="_on_voltar_pressed"]
+[connection signal="pressed" from="voltar" to="." method="_on_voltar_pressed"]
