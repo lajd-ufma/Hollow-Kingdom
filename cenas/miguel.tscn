@@ -13,26 +13,41 @@ point_count = 5
 radius = 12.0
 height = 40.0
 
+[sub_resource type="Curve2D" id="Curve2D_gq344"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, -0.0346632, -0.06346789, 0.0346632, 0.06346789, -97, 0, -0.8426598, -28.229103, 0.8426598, 28.229103, -128, 27, -0.6319952, -0.21066499, 0.6319952, 0.21066499, -97, 52, 0, 0, 0, 0, -2, 52, 0, 0, 0, 0, 99, 52, 0.8426598, 28.439768, -0.8426598, -28.439768, 136, 27, 0, 0, 0, 0, 99, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
+
 [node name="Miguel" type="Node2D" unique_id=711381819]
 script = ExtResource("1_gq344")
-speed = 25
+stop_ratios = Array[float]([0.66, 0.17])
+sweep_speed_multiplier = 2.0
 
-[node name="Path2D" type="Path2D" parent="." unique_id=1255848330]
+[node name="Path Normal Track" type="Path2D" parent="." unique_id=1255848330]
 position = Vector2(-21, -8)
 curve = SubResource("Curve2D_8y14k")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=186023621]
+[node name="PathFollow2D" type="PathFollow2D" parent="Path Normal Track" unique_id=186023621]
 position = Vector2(-73, -45)
 rotation = -0.590918
 rotates = false
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Path2D/PathFollow2D" unique_id=1097570599]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Path Normal Track/PathFollow2D" unique_id=1097570599]
 rotation = 0.59016216
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/CharacterBody2D" unique_id=1288328295]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path Normal Track/PathFollow2D/CharacterBody2D" unique_id=1288328295]
 shape = SubResource("CapsuleShape2D_gq344")
 
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/CharacterBody2D" unique_id=1311783654]
+[node name="Sprite2D" type="Sprite2D" parent="Path Normal Track/PathFollow2D/CharacterBody2D" unique_id=1311783654]
 texture = ExtResource("1_8y14k")
 hframes = 5
 vframes = 5
+
+[node name="Path_Sweep" type="Path2D" parent="." unique_id=187408628]
+curve = SubResource("Curve2D_gq344")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path_Sweep" unique_id=1279495084]
+rotation = 3.0883098
+rotates = false
+loop = false

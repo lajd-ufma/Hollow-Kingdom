@@ -14,7 +14,8 @@ position = Vector2(432, 553.00006)
 scale = Vector2(2.5, 2.5)
 move_speed = 200.0
 gravity = 500.0
-jump_speed = 350.0
+jump_speed = 450.0
+acceleration = 350.0
 
 [node name="Chao" type="StaticBody2D" parent="." unique_id=1179989769]
 position = Vector2(642, 669)
@@ -30,4 +31,4 @@ position = Vector2(-25, -32)
 [node name="Miguel" parent="." unique_id=1087208123 instance=ExtResource("3_ut42s")]
 position = Vector2(607.00006, 322)
 scale = Vector2(4.5, 4.5)
-speed = 50
+speed = 50.0
