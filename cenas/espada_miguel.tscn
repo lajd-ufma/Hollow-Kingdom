@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dk7fkmainpcop"]
 
-[ext_resource type="Texture2D" uid="uid://ca445uchvhqnh" path="res://assets/Plume 16x16.png" id="1_gvwna"]
 [ext_resource type="Script" uid="uid://5k6ur57uoluj" path="res://scripts/espada_miguel.gd" id="1_uax54"]
 [ext_resource type="Script" uid="uid://7r0tsh5020ll" path="res://scripts/espada_miguel_body.gd" id="2_0qd1h"]
+[ext_resource type="Texture2D" uid="uid://vx4dy0m54oxe" path="res://assets/Autorais/Miguel-Querubim/espada.Miguel.png" id="3_0qd1h"]
 
 [sub_resource type="Curve2D" id="Curve2D_0qd1h"]
 _data = {
@@ -11,6 +11,7 @@ _data = {
 point_count = 101
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1261"]
+size = Vector2(6.5053864, 40.163666)
 
 [node name="espada_miguel" type="Node2D" unique_id=808010027]
 script = ExtResource("1_uax54")
@@ -28,9 +29,12 @@ scale = Vector2(2.5, 2.5)
 script = ExtResource("2_0qd1h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/espada_miguel_body" unique_id=1485611253]
+position = Vector2(0.14142418, 2.262743)
+scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_e1261")
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/espada_miguel_body" unique_id=870608749]
-texture = ExtResource("1_gvwna")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_0qd1h")
 
 [connection signal="body_entered" from="Path2D/PathFollow2D/espada_miguel_body" to="Path2D/PathFollow2D/espada_miguel_body" method="_on_body_entered"]

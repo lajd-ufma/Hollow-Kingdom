@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c7du6jm0c3cfy"]
 
-[ext_resource type="Texture2D" uid="uid://cbhvwg6v60org" path="res://assets/Enemies/Sprites/Player2.png" id="1_8y14k"]
 [ext_resource type="Script" uid="uid://ceo6clkb7102u" path="res://scripts/miguel.gd" id="1_gq344"]
+[ext_resource type="Texture2D" uid="uid://btmx7oddldo8p" path="res://assets/Autorais/Miguel-Querubim/Miguel.Querubim.png" id="2_gq344"]
 
 [sub_resource type="Curve2D" id="Curve2D_8y14k"]
 _data = {
@@ -12,6 +12,116 @@ point_count = 5
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gq344"]
 radius = 12.0
 height = 40.0
+
+[sub_resource type="Animation" id="Animation_y62ys"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_gq344")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gq344"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_gq344")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.22278073, 0.44870967, 0.69037986, 0.8958454),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y62ys"]
+_data = {
+&"RESET": SubResource("Animation_y62ys"),
+&"idle": SubResource("Animation_gq344")
+}
 
 [sub_resource type="Curve2D" id="Curve2D_gq344"]
 _data = {
@@ -25,7 +135,8 @@ stop_ratios = Array[float]([0.66, 0.17])
 sweep_speed_multiplier = 2.0
 
 [node name="Path Normal Track" type="Path2D" parent="." unique_id=1255848330]
-position = Vector2(-21, -8)
+position = Vector2(600, 300)
+scale = Vector2(4, 4)
 curve = SubResource("Curve2D_8y14k")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path Normal Track" unique_id=186023621]
@@ -40,11 +151,17 @@ rotation = 0.59016216
 shape = SubResource("CapsuleShape2D_gq344")
 
 [node name="Sprite2D" type="Sprite2D" parent="Path Normal Track/PathFollow2D/CharacterBody2D" unique_id=1311783654]
-texture = ExtResource("1_8y14k")
-hframes = 5
-vframes = 5
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_gq344")
+hframes = 3
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path Normal Track/PathFollow2D/CharacterBody2D" unique_id=1364587445]
+libraries/ = SubResource("AnimationLibrary_y62ys")
 
 [node name="Path_Sweep" type="Path2D" parent="." unique_id=187408628]
+position = Vector2(600, 300)
+scale = Vector2(4, 4)
 curve = SubResource("Curve2D_gq344")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path_Sweep" unique_id=1279495084]
