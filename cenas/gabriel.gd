@@ -48,6 +48,7 @@ extends Node2D
 @onready var pivot: Node2D = $Path2D/PathFollow2D/Pivot
 @onready var attack_timer: Timer = $AttackTimer
 @onready var gabriel_body = $Path2D/PathFollow2D/Pivot/gabriel_body
+@onready var hitbox_collision_shape_2d: CollisionShape2D = $Path2D/PathFollow2D/Pivot/gabriel_body/hitbox/CollisionShape2D
 
 
 # ============================================================

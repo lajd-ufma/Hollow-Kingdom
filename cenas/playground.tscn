@@ -11,15 +11,16 @@ size = Vector2(1323, 84)
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=73572246]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=963240257]
-position = Vector2(626, 653)
+position = Vector2(626, 678)
 shape = SubResource("RectangleShape2D_hoorn")
 
 [node name="Rafael" parent="." unique_id=2110402888 instance=ExtResource("2_hoorn")]
-position = Vector2(1241, 569)
+position = Vector2(1169, 559)
 
 [node name="rafael_spawn_point" type="Marker2D" parent="." unique_id=2021542487]
-position = Vector2(1248, 563)
+position = Vector2(1162, 559)
 
 [node name="player" parent="." unique_id=832522077 instance=ExtResource("1_vse8g")]
 position = Vector2(133, 543)
 scale = Vector2(3, 3)
+jump_speed = 350.0

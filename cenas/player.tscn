@@ -264,7 +264,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xojfc"]
-size = Vector2(28.5, 6.5)
+size = Vector2(28.5, 8.5)
 
 [node name="player" type="CharacterBody2D" unique_id=832522077]
 collision_mask = 15
@@ -342,7 +342,7 @@ show_percentage = false
 collision_mask = 6
 
 [node name="atack_down" type="CollisionShape2D" parent="hitbox_down" unique_id=1167761227]
-position = Vector2(-0.25, 22.75)
+position = Vector2(-0.25, 23.75)
 shape = SubResource("RectangleShape2D_xojfc")
 disabled = true
 

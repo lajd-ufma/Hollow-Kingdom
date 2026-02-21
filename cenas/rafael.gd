@@ -63,11 +63,11 @@ func _ready() -> void:
 	current_state = "horizontal_attack"
 	timer.start()
 
-	# Rotação contínua do boss
-	tween = get_tree().create_tween()
-	tween.set_loops()
-	tween.set_trans(Tween.TRANS_LINEAR)
-	tween.tween_property(body, "rotation_degrees", 360.0, 2.0).from(0.0)
+	## Rotação contínua do boss
+	#tween = get_tree().create_tween()
+	#tween.set_loops()
+	#tween.set_trans(Tween.TRANS_LINEAR)
+	#tween.tween_property(body, "rotation_degrees", 360.0, 2.0).from(0.0)
 
 
 # =====================================================
@@ -244,7 +244,7 @@ func _finish_return():
 func _on_tomou_dano(value):
 
 	# Boss não toma dano durante ataques ativos
-	if current_state == "horizontal_attack" or current_state == "diving":
+	if current_state == "diving":
 		return
 
 	hp.value -= value

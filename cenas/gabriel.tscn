@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://c618pbs6s4tv4" path="res://cenas/gabriel.gd" id="1_qajb7"]
 [ext_resource type="Curve2D" uid="uid://d3wvxmeeax1sd" path="res://tres/gabriel_paths/purificacao_move.tres" id="2_d4mgg"]
 [ext_resource type="PackedScene" uid="uid://cxh6djix4dlyb" path="res://cenas/laser_rain_segment.tscn" id="2_ppkud"]
-[ext_resource type="Texture2D" uid="uid://cynv2lpfs26rj" path="res://assets/Enemies/Sprites/enemy_rpg.png" id="2_s6omv"]
 [ext_resource type="PackedScene" uid="uid://dkqpxlla7oxxm" path="res://cenas/shock_wave.tscn" id="3_acejx"]
 [ext_resource type="Script" uid="uid://d13y6v0m57oid" path="res://cenas/gabriel_body.gd" id="3_gdcay"]
 [ext_resource type="PackedScene" uid="uid://pwjceowvmbia" path="res://cenas/feather.tscn" id="3_tds4j"]
 [ext_resource type="Shader" uid="uid://c2x25qwar67q2" path="res://cenas/gabriel.gdshader" id="5_4ji6v"]
+[ext_resource type="Texture2D" uid="uid://d0258lnmhiyqy" path="res://assets/Autorais/Gabriel-Serafim/Gabriel.serafim.png" id="7_tds4j"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gdcay"]
-size = Vector2(21, 22)
+[sub_resource type="CircleShape2D" id="CircleShape2D_tds4j"]
+radius = 33.545677
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppkud"]
 shader = ExtResource("5_4ji6v")
@@ -20,8 +20,47 @@ shader_parameter/noise_speed = 1.5
 shader_parameter/color_start = Color(0.2, 0.8, 1, 1)
 shader_parameter/color_end = Color(1, 0.2, 0.2, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ji6v"]
-size = Vector2(39.75, 32)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tds4j"]
+radius = 26.5
+height = 98.0
+
+[sub_resource type="Animation" id="Animation_tds4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6tf11"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wln82"]
+_data = {
+&"RESET": SubResource("Animation_tds4j"),
+&"idle": SubResource("Animation_6tf11")
+}
 
 [node name="Gabriel" type="Node2D" unique_id=1668549009]
 script = ExtResource("1_qajb7")
@@ -49,13 +88,14 @@ collision_mask = 3
 script = ExtResource("3_gdcay")
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=1158473157]
-texture = ExtResource("2_s6omv")
-hframes = 5
-vframes = 5
+texture = ExtResource("7_tds4j")
+hframes = 3
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=26768209]
 position = Vector2(-0.5, -1)
-shape = SubResource("RectangleShape2D_gdcay")
+shape = SubResource("CircleShape2D_tds4j")
+debug_color = Color(3.85046e-07, 0.6107864, 0.6352338, 0.41960785)
 
 [node name="RayCast2D" type="RayCast2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=943954107]
 enabled = false
@@ -69,8 +109,14 @@ width = 2.0
 [node name="hitbox" type="Area2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=2084460936]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Pivot/gabriel_body/hitbox" unique_id=1261043237]
-position = Vector2(-4.375, -2)
-shape = SubResource("RectangleShape2D_4ji6v")
+position = Vector2(-1.25, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_tds4j")
+debug_color = Color(0.9317671, 2.9359759e-05, 0.6534741, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D/PathFollow2D/Pivot/gabriel_body" unique_id=543762768]
+libraries/ = SubResource("AnimationLibrary_wln82")
+autoplay = &"idle"
 
 [node name="hp" type="ProgressBar" parent="Path2D/PathFollow2D/Pivot" unique_id=366702955]
 offset_left = -76.0

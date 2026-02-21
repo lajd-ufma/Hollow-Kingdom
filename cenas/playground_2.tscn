@@ -20,5 +20,6 @@ shape = SubResource("RectangleShape2D_wkqqn")
 position = Vector2(25, 285)
 
 [node name="player" parent="." unique_id=832522077 instance=ExtResource("2_xta1u")]
-position = Vector2(519, 611)
+position = Vector2(489, 529)
+scale = Vector2(4, 4)
 acceleration = 500.0

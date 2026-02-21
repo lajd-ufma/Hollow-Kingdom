@@ -1,16 +1,15 @@
 [gd_scene format=3 uid="uid://bjbf4qo1gdq0e"]
 
-[ext_resource type="Texture2D" uid="uid://cynv2lpfs26rj" path="res://assets/Enemies/Sprites/enemy_rpg.png" id="1_fbfpt"]
 [ext_resource type="Script" uid="uid://d322ve8wc0423" path="res://cenas/rafael.gd" id="1_usr7g"]
-[ext_resource type="Curve2D" uid="uid://trcf4f1pvgh" path="res://tres/rafael_paths/ataque_queda.tres" id="2_betai"]
+[ext_resource type="Curve2D" uid="uid://bmi7n0ivx25f7" path="res://tres/rafael_paths/move_basica.tres" id="2_betai"]
 [ext_resource type="Script" uid="uid://dwd1y1vrkqxxu" path="res://cenas/rafael_body.gd" id="2_d8352"]
-[ext_resource type="Texture2D" uid="uid://d3q3ys8y2cyn4" path="res://assets/Rafael-Ophanim/ophanim.só-Recovered-Recovered-sheet.png" id="5_6e11c"]
+[ext_resource type="Texture2D" uid="uid://d3q3ys8y2cyn4" path="res://assets/Autorais/Rafael-Ophanim/ophanim.só-Recovered-Recovered-sheet.png" id="5_6e11c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fbfpt"]
-radius = 31.016125
+radius = 47.539455
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_usr7g"]
-radius = 43.046486
+radius = 56.22277
 
 [sub_resource type="Animation" id="Animation_6e11c"]
 length = 0.001
@@ -52,26 +51,21 @@ _data = {
 
 [node name="Rafael" type="Node2D" unique_id=2110402888]
 script = ExtResource("1_usr7g")
+return_pause_time = 1.0
+ground_pause_time = 3.0
 
 [node name="Path2D" type="Path2D" parent="." unique_id=482869886]
 curve = ExtResource("2_betai")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1371040234]
-position = Vector2(-13, -10)
 rotates = false
 loop = false
 
 [node name="rafael_body" type="CharacterBody2D" parent="Path2D/PathFollow2D" unique_id=617477463]
+scale = Vector2(1.5, 1.5)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("2_d8352")
-
-[node name="_Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/rafael_body" unique_id=858570448]
-visible = false
-scale = Vector2(4, 4)
-texture = ExtResource("1_fbfpt")
-hframes = 5
-vframes = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/rafael_body" unique_id=868150142]
 texture = ExtResource("5_6e11c")
@@ -79,7 +73,6 @@ hframes = 2
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/rafael_body" unique_id=201443341]
-visible = false
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_fbfpt")
 
@@ -95,10 +88,11 @@ libraries/ = SubResource("AnimationLibrary_54faa")
 autoplay = &"idle"
 
 [node name="hp" type="ProgressBar" parent="Path2D/PathFollow2D" unique_id=1739844759]
-offset_left = -76.0
-offset_top = -64.0
-offset_right = 92.0
-offset_bottom = -45.0
+offset_left = -84.0
+offset_top = -112.0
+offset_right = 84.0
+offset_bottom = -93.0
+size_flags_horizontal = 4
 value = 100.0
 show_percentage = false
 
