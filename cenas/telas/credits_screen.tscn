@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://re2b15mymeqn"]
 
 [ext_resource type="PackedScene" uid="uid://40qt7fo4q8yr" path="res://cenas/telas/BotaoGenerico.tscn" id="1_3uvmg"]
+[ext_resource type="Texture2D" uid="uid://ca445uchvhqnh" path="res://assets/Plume 16x16.png" id="2_gofuj"]
 
 [sub_resource type="GDScript" id="GDScript_g04ip"]
 script/source = "extends Control
@@ -16,74 +17,91 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.17254902, 0.17254902, 0.17254902, 1)
+color = Color(0.08235294, 0.20784314, 0.2627451, 1)
 script = SubResource("GDScript_g04ip")
+
+[node name="GrupoImagens" type="Node2D" parent="." unique_id=1568695751]
 
 [node name="TittleCredits" type="Label" parent="." unique_id=39879670]
 layout_mode = 0
-offset_left = 487.0
-offset_right = 792.0
-offset_bottom = 88.0
+offset_left = 487.5
+offset_top = 10.0
+offset_right = 792.5
+offset_bottom = 98.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 64
 text = "CRÉDITOS"
 
-[node name="EquipeProgramacao" type="Label" parent="." unique_id=1761112677]
-layout_mode = 0
-offset_left = 518.0
-offset_top = 103.0
-offset_right = 750.0
-offset_bottom = 153.0
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2022260765]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -221.0
+offset_top = -174.0
+offset_right = 221.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EquipeProgramacao" type="Label" parent="VBoxContainer" unique_id=1761112677]
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 36
 text = "Programação"
 
-[node name="Programadores" type="Label" parent="." unique_id=199710302]
-layout_mode = 0
-offset_left = 586.0
-offset_top = 154.0
-offset_right = 686.0
-offset_bottom = 336.0
+[node name="Programadores" type="Label" parent="VBoxContainer" unique_id=199710302]
+layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
-text = "Pedro,
-Diego,
-Vinicius,
-Flávio,
-Emerton"
+text = "Pedro, Diego, Vinicius, Flávio, Emerton"
 
-[node name="EquipeArte" type="Label" parent="." unique_id=549871667]
-layout_mode = 0
-offset_left = 526.0
-offset_top = 351.0
-offset_right = 762.0
-offset_bottom = 401.0
+[node name="EquipeArte" type="Label" parent="VBoxContainer" unique_id=549871667]
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 36
-text = "Arte e Música"
+text = "Arte"
 
-[node name="Artistas" type="Label" parent="." unique_id=212223728]
-layout_mode = 0
-offset_left = 584.0
-offset_top = 407.0
-offset_right = 684.0
-offset_bottom = 478.0
+[node name="Arte" type="Label" parent="VBoxContainer" unique_id=212223728]
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 24
-text = "Airam,
-Emerton"
+text = "Airam"
+
+[node name="EquipeMusica" type="Label" parent="VBoxContainer" unique_id=1826929141]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 36
+text = "Música"
+
+[node name="Musica" type="Label" parent="VBoxContainer" unique_id=1925932445]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Emerton"
 
 [node name="voltar" parent="." unique_id=2112732080 instance=ExtResource("1_3uvmg")]
 layout_mode = 0
-offset_left = 545.0
-offset_top = 555.0
-offset_right = 721.0
-offset_bottom = 624.0
+offset_left = 555.0
+offset_top = 489.0
+offset_right = 731.0
+offset_bottom = 558.0
 theme_override_font_sizes/font_size = 44
 text = "VOLTAR"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2058267597]
+texture = ExtResource("2_gofuj")
+lifetime = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(1280, 1)
+scale_amount_min = 2.0
+scale_amount_max = 2.5
 
 [connection signal="pressed" from="voltar" to="." method="_on_voltar_pressed"]

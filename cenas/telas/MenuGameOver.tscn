@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://cft5yvje6yr5p"]
+
+[ext_resource type="Script" uid="uid://c7pyj8g4hgqg2" path="res://cenas/telas/menu_game_over.gd" id="1_8x2ko"]
+[ext_resource type="PackedScene" uid="uid://40qt7fo4q8yr" path="res://cenas/telas/BotaoGenerico.tscn" id="1_vvekt"]
+
+[node name="MenuGameOver" type="Control" unique_id=1104531241]
+process_mode = 3
+modulate = Color(1, 1, 1, 0.5882353)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8x2ko")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1955780038]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17254902, 0.17254902, 0.17254902, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=495983600]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1287742354]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "FIM DE JOGO"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1490324371]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -23.5
+offset_right = 4.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 36
+
+[node name="reiniciar_btn" parent="VBoxContainer" unique_id=2112732080 instance=ExtResource("1_vvekt")]
+layout_mode = 2
+text = "REINICIAR"
+
+[node name="sair_btn" parent="VBoxContainer" unique_id=1331562593 instance=ExtResource("1_vvekt")]
+layout_mode = 2
+text = "SAIR"
+
+[connection signal="pressed" from="VBoxContainer/reiniciar_btn" to="." method="_on_reiniciar_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/sair_btn" to="." method="_on_sair_btn_pressed"]

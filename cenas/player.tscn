@@ -324,7 +324,7 @@ offset_right = 1219.0
 offset_bottom = 71.0
 theme_override_styles/background = SubResource("StyleBoxFlat_kthid")
 max_value = 10.0
-value = 10.0
+value = 1.0
 show_percentage = false
 
 [node name="mana" type="ProgressBar" parent="hud" unique_id=1067245855]

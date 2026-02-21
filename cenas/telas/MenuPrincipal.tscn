@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://40qt7fo4q8yr" path="res://cenas/telas/BotaoGenerico.tscn" id="1_onaq0"]
 [ext_resource type="Texture2D" uid="uid://14ljgk1sbgf" path="res://assets/Autorais/Rafael-Ophanim/anéis.centraisl.png" id="2_ab2d8"]
 [ext_resource type="Texture2D" uid="uid://byky3nyd1msou" path="res://assets/Autorais/Miguel-Querubim/leaol.rugido.png" id="3_ayrtv"]
+[ext_resource type="Texture2D" uid="uid://ca445uchvhqnh" path="res://assets/Plume 16x16.png" id="5_ayrtv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4f56o"]
 font_size = 64
@@ -11,6 +12,10 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gtg8j"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="MenuPrincipal" type="ColorRect" unique_id=1951388780]
 anchors_preset = 15
@@ -18,29 +23,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.1728327, 0.17283267, 0.17283267, 1)
+color = Color(0.08293293, 0.20813304, 0.2610408, 1)
 script = ExtResource("1_4f56o")
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1821750198]
+[node name="GrupoImagens" type="Node2D" parent="." unique_id=1821750198]
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=78994184]
-position = Vector2(637, 39)
+[node name="imagem" type="Sprite2D" parent="GrupoImagens" unique_id=78994184]
+position = Vector2(639, 51)
 texture = ExtResource("2_ab2d8")
 
-[node name="Sprite2Dw" type="Sprite2D" parent="Node2D" unique_id=2085415832]
+[node name="imagem2" type="Sprite2D" parent="GrupoImagens" unique_id=2085415832]
 modulate = Color(1, 1, 1, 0.42745098)
 position = Vector2(632, 354)
 skew = 0.017453292
 texture = ExtResource("3_ayrtv")
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1961624462]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2095450787]
 layout_mode = 1
@@ -49,13 +45,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 75
 
 [node name="TituloJogo" type="Label" parent="MarginContainer" unique_id=1120131582]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-text = "Titulo Legal de Jogo"
+text = "ALVORADA DOS PROFANOS"
 label_settings = SubResource("LabelSettings_4f56o")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=189151065]
@@ -89,6 +85,14 @@ text = "CRÉDITOS"
 [node name="sair_btn" parent="PanelContainer/VBoxContainer" unique_id=1722858878 instance=ExtResource("1_onaq0")]
 layout_mode = 2
 text = "SAIR"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2079594746]
+texture = ExtResource("5_ayrtv")
+lifetime = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(1280, 1)
+scale_amount_min = 2.0
+scale_amount_max = 2.5
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/jogar_btn" to="." method="_on_jogar_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/creditos_btn" to="." method="_on_creditos_pressed"]

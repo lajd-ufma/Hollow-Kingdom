@@ -3,11 +3,35 @@
 [ext_resource type="Script" uid="uid://bjqm6qklv0yi5" path="res://cenas/telas/botao_generico.gd" id="1_od8dp"]
 [ext_resource type="Texture2D" uid="uid://ca445uchvhqnh" path="res://assets/Plume 16x16.png" id="1_wn4rv"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_od8dp"]
+bg_color = Color(0.31764707, 0.27450982, 0.27058825, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h34il"]
+bg_color = Color(0.21052343, 0.178866, 0.17570347, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlfch"]
+bg_color = Color(0.277045, 0.23818079, 0.2346507, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [node name="Button" type="Button" unique_id=2112732080]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_right = 120.0
+offset_bottom = 58.0
 pivot_offset = Vector2(60, 30)
 theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_od8dp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h34il")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nlfch")
 text = "JOGAR"
 script = ExtResource("1_od8dp")
 
