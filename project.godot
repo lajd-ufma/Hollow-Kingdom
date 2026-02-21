@@ -22,19 +22,28 @@ Dialogic="*uid://ds2q0uclmolvu"
 
 directories/dch_directory={
 "Deus": "res://Dialogic/characters/Deus.dch",
+"Gabriel": "res://Dialogic/characters/Gabriel.dch",
+"Miguel": "res://Dialogic/characters/Miguel.dch",
+"Rafael": "res://Dialogic/characters/Rafael.dch",
 "Rei": "res://Dialogic/characters/Rei.dch"
 }
 directories/dtl_directory={
 "Deus": "res://Dialogic/timelines/Deus.dtl",
+"Gabriel": "res://Dialogic/timelines/Gabriel.dtl",
+"Miguel": "res://Dialogic/timelines/Miguel.dtl",
+"Rafael": "res://Dialogic/timelines/Rafael.dtl",
 "introdução": "res://Dialogic/timelines/introdução.dtl"
 }
 layout/style_directory={
 "": "res://Dialogic/styles/estilo_padrão.tres",
 "estilo_introdução": "res://Dialogic/styles/estilo_introdução.tres",
-"estilo_padrão": "res://Dialogic/styles/estilo_padrão.tres"
+"estilo_padrão": "res://Dialogic/styles/estilo_padrão.tres",
+"estilo_portait_NPCs": "res://Dialogic/styles/estilo_portait_NPCs.tres",
+"estilo_portrait_rei": "res://Dialogic/styles/estilo_portrait.tres"
 }
-layout/style_list=["res://Dialogic/styles/estilo_padrão.tres", "res://Dialogic/styles/estilo_introdução.tres"]
+layout/style_list=["res://Dialogic/styles/estilo_padrão.tres", "res://Dialogic/styles/estilo_introdução.tres", "res://Dialogic/styles/estilo_portrait.tres", "res://Dialogic/styles/estilo_portait_NPCs.tres"]
 layout/default_style="res://Dialogic/styles/estilo_padrão.tres"
+glossary/default_case_sensitive=true
 
 [display]
 

@@ -1,6 +1,15 @@
-[style name="estilo_padrão"]
-Rei: Isso é culpa sua não é!? Por que você fechou a fonte?
-Deus: Eu sinto muito, Rei, mas não há mais nada que possa ser feito.
-Rei: Como assim? eu atravessei os 3 portões, derrotei os 3 arcanjos, eu lhe ordeno! Abra a fonte para que a graça possa salva-los!
-Deus: A fonte não é capaz de gerar graça, a fonte apenas direciona a graça que já existe, Rei. a Graça está em todos vocês, apartir do momento que o reino deixou de seguir a lei da aliança, o seu destino já estava selado, eu sinto muito.
+Rei: O que foi isso?! \
+Isso é tudo culpa sua não é?! \
+Por que você fechou a fonte?
+[wait time="1.2"]
+Deus: Rei, Eu sinto muito, mas não há mais nada que possa ser feito.
+[wait time="1.2"]
+Rei: Como assim? \
+Eu atravessei os 3 portões, derrotei os 3 arcanjos, eu lhe ordeno! \
+Abra a fonte para que a graça possa salvar a todos!
+[wait time="1.2"]
+Deus: A fonte não é capaz de gerar Graça, ela apenas direciona a Graça que já existe, Rei. \
+a verdadeira Graça está dentro de cada um de vocês.
+Deus: Apartir do momento que o reino deixou de seguir a lei da aliança, o seu destino já estava selado, eu sinto muito.
+[wait time="1.2"]
 Rei: ...

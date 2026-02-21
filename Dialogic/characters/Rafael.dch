@@ -7,24 +7,23 @@
 "prefix": "",
 "sound_mood_default": "",
 "sound_moods": {},
-"style": "estilo_portrait_rei",
+"style": "estilo_portait_NPCs",
 "suffix": ""
 },
-&"default_portrait": "Rei",
+&"default_portrait": "Anéis.centraisl",
 &"description": "",
-&"display_name": "Rei",
+&"display_name": "Rafael",
 &"mirror": false,
 &"nicknames": [""],
 &"offset": Vector2(0, 0),
 &"portraits": {
-"Rei": {
+"Anéis.centraisl": {
 "export_overrides": {
-"image": "\"res://assets/Autorais/Reizinho/parado.png\""
+"image": "\"res://assets/Autorais/Rafael-Ophanim/anéis.centraisl.png\""
 },
-"ignore_char_scale": false,
 "mirror": false,
-"offset": Vector2(75, 270),
-"scale": 2.0,
+"offset": Vector2(65, 170),
+"scale": 1.5,
 "scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn"
 }
 },

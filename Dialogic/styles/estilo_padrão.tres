@@ -10,6 +10,10 @@ script = ExtResource("1_6i7ef")
 [sub_resource type="Resource" id="Resource_yiv21"]
 script = ExtResource("1_6i7ef")
 scene = ExtResource("2_t7gb6")
+overrides = {
+"box_size": "Vector2(600, 125)",
+"name_label_alignment": "1"
+}
 
 [resource]
 script = ExtResource("2_7cpol")
