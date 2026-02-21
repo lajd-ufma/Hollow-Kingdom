@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cy3lm8xl0l5m2"]
+
+[ext_resource type="Script" uid="uid://bwjd4m0gn1gjr" path="res://cenas/discussão_deus_final.gd" id="1_lxuls"]
+
+[node name="Discussão_Deus_final" type="Node2D" unique_id=281002352]
+script = ExtResource("1_lxuls")

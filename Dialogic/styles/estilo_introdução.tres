@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="DialogicStyle" format=3 uid="uid://coyvwrkdoj65c"]
+
+[ext_resource type="Script" uid="uid://bwg6yncmh2cml" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="1_1ao87"]
+[ext_resource type="PackedScene" uid="uid://bquja8jyk8kbr" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_layer.tscn" id="2_fictn"]
+[ext_resource type="Script" uid="uid://dv08k6ljua6fm" path="res://addons/dialogic/Resources/dialogic_style.gd" id="2_jr2qk"]
+
+[sub_resource type="Resource" id="Resource_fictn"]
+script = ExtResource("1_1ao87")
+
+[sub_resource type="Resource" id="Resource_bccnq"]
+script = ExtResource("1_1ao87")
+scene = ExtResource("2_fictn")
+overrides = {
+"box_size": "Vector2(1024, 150)",
+"text_size": "20.0",
+"text_use_global_size": "false"
+}
+
+[resource]
+script = ExtResource("2_jr2qk")
+name = "estilo_introdução"
+layer_list = Array[String](["10"])
+layer_info = {
+"": SubResource("Resource_fictn"),
+"10": SubResource("Resource_bccnq")
+}
+metadata/_latest_layer = "10"
