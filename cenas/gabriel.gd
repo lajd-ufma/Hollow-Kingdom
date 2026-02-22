@@ -254,7 +254,7 @@ func move_to_visual_center() -> void:
 # ============================================================
 
 func shake_warning() -> void:
-
+	animation_player.play("abrino_asa")
 	var timer := 0.0
 	var base_pos := pivot.global_position
 
@@ -278,7 +278,7 @@ func shake_warning() -> void:
 # ============================================================
 
 func slam_down() -> void:
-
+	hitbox_collision_shape_2d.disabled = false
 	while pivot.global_position.y < ground_y:
 
 		pivot.global_position.y += slam_speed * get_process_delta_time()
@@ -286,16 +286,13 @@ func slam_down() -> void:
 		await get_tree().process_frame
 
 	pivot.global_position.y = ground_y
-
-
-
+	hitbox_collision_shape_2d.disabled = true
 
 # ============================================================
 # VOLTAR PRO PATH SUAVEMENTE
 # ============================================================
 
 func return_from_slam() -> void:
-
 	var target_y: float = original_parent.global_position.y
 
 	while abs(pivot.global_position.y - target_y) > 2.0:
@@ -389,9 +386,13 @@ func _morrer():
 	animation_player.play("morrendo")
 
 
-func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
-	await get_tree().create_timer(3).timeout
-	if get_parent().has_signal("matou_boss"):
-		get_parent().emit_signal("matou_boss")
-	await get_tree().create_timer(1).timeout
-	queue_free()
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	match anim_name:
+		"abrino_asa":
+			animation_player.play("idle")
+		"morrendo":
+			await get_tree().create_timer(3).timeout
+			if get_parent().has_signal("matou_boss"):
+				get_parent().emit_signal("matou_boss")
+			await get_tree().create_timer(1).timeout
+			queue_free()

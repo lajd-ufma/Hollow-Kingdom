@@ -4,7 +4,8 @@ extends Area2D
 
 @export var damage_sword: int = 2
 func _process(delta):
-	rotation_degrees += rotation_speed * delta
+	if $"../../..".is_ativada:
+		rotation_degrees += rotation_speed * delta
 
 
 func _on_body_entered(body: Node2D) -> void:

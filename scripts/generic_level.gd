@@ -6,6 +6,7 @@ signal matou_boss
 
 
 func _ready() -> void:
+	$transition/CanvasLayer.visible = true
 	$transition/AnimationPlayer.play("fade-in")
 	matou_boss.connect(_on_matou_boss)
 	$portal.monitoring = false

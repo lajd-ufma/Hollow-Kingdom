@@ -11,9 +11,9 @@ func start_dialog(timeline_name: String) -> void:
 	if not Dialogic:
 		push_error("Dialogic não encontrado!")
 		return
-	
-	Dialogic.start(timeline_name)
 	_pause_move()
+	await get_tree().create_timer(1).timeout
+	Dialogic.start(timeline_name)
 
 # ============================================================
 #  CONTROLES GERAIS

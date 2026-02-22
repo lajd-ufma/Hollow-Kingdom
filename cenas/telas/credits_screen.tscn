@@ -52,7 +52,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 36
-text = "Programação"
+text = "Programação e Game Design"
 
 [node name="Programadores" type="Label" parent="VBoxContainer" unique_id=199710302]
 layout_mode = 2
