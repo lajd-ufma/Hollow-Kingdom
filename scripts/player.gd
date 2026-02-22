@@ -1,14 +1,14 @@
 extends CharacterBody2D
 
 @export_category("movement variable")
-@export var move_speed = 120.0
+@export var move_speed = 200.0
 @export var deceleration = 0.1
-@export var gravity = 350.0
+@export var gravity = 550.0
 var movement = Vector2()
 
 @export_category("Jump variable")
-@export var jump_speed = 250.0
-@export var acceleration = 290.0
+@export var jump_speed = 360.0
+@export var acceleration = 390.0
 @export var jump_amount = 2
 
 @export_category("wall jump variable")
@@ -16,12 +16,12 @@ var movement = Vector2()
 @onready var left_ray: RayCast2D = $raycast/left_ray
 @onready var right_ray: RayCast2D = $raycast/right_ray
 @onready var anim: AnimationPlayer = $anim
-@export var wall_x_force = 200.0
-@export var wall_y_force = -220.0
+@export var wall_x_force = 300.0
+@export var wall_y_force = -320.0
 var is_wall_jumping = false
 
 @export_category("dash variable")
-@export var dash_speed = 400.0
+@export var dash_speed = 600.0
 @export var facing_right = true
 @export var dash_gravity = 0
 @export var dash_number = 1
@@ -40,7 +40,6 @@ var dash_timer = Timer
 signal tomou_dano
 
 func _process(delta: float) -> void:
-	horizontal_movement()
 	set_animations()
 	flip()
 
@@ -64,6 +63,9 @@ func _on_tomou_dano(value):
 			set_collision_mask_value(3, true)
 
 func _physics_process(delta: float) -> void:
+	if !GameManager.can_move: return
+	
+	horizontal_movement()
 	if is_dashing == false:
 		velocity.y += gravity * delta
 	elif is_dashing == true:
@@ -74,20 +76,21 @@ func _physics_process(delta: float) -> void:
 	wall_logic()
 
 func _input(_event: InputEvent) -> void:
-	jump_logic()
-	if Input.is_action_just_pressed("special") and barra_mana.value-3>0:
-		barra_mana.value-=3
-		var shoot_instance = shoot.instantiate()
-		shoot_instance.global_position = spawnpoint_shoot.global_position
-		shoot_instance.direction = 1 if facing_right else -1
-		get_tree().root.add_child(shoot_instance)
-	elif Input.is_action_just_pressed("atack"):
-		if Input.is_action_pressed("up"):
-			is_atacking_up = true
-		elif Input.is_action_pressed("down") and not is_on_floor():
-			is_atacking_down = true
-		else:
-			is_atacking = true
+	if GameManager.can_move:
+		jump_logic()
+		if Input.is_action_just_pressed("special") and barra_mana.value-3>0:
+			barra_mana.value-=3
+			var shoot_instance = shoot.instantiate()
+			shoot_instance.global_position = spawnpoint_shoot.global_position
+			shoot_instance.direction = 1 if facing_right else -1
+			get_tree().root.add_child(shoot_instance)
+		elif Input.is_action_just_pressed("atack"):
+			if Input.is_action_pressed("up"):
+				is_atacking_up = true
+			elif Input.is_action_pressed("down") and not is_on_floor():
+				is_atacking_down = true
+			else:
+				is_atacking = true
 	
 func horizontal_movement():
 	if is_wall_jumping == false and is_dashing == false:
@@ -138,7 +141,7 @@ func jump_logic():
 		if jump_amount > 0:
 			if Input.is_action_just_pressed("jump"):
 				jump_amount -= 1
-				velocity.y -= lerp(jump_speed, acceleration, 1)
+				velocity.y -= lerp(jump_speed, acceleration, 0.5)
 			if Input.is_action_just_released("jump"):
 				velocity.y = lerp(velocity.y, gravity, 0.2)
 				velocity.y *= 0.3
@@ -190,15 +193,18 @@ func _on_anim_animation_finished(anim_name: StringName) -> void:
 			is_atacking_down = false
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.has_signal("tomou_dano"):
-		body.emit_signal("tomou_dano", 20)
+	dar_dano(body)
 
 
 func _on_hitbox_down_body_entered(body: Node2D) -> void:
 	var tween := get_tree().create_tween()
 	tween.tween_property(self, "velocity:y", -100, 0.25)
+	dar_dano(body)
+
+func dar_dano(body):
 	if body.has_signal("tomou_dano"):
-		body.emit_signal("tomou_dano", 20)
+		body.emit_signal("tomou_dano", 10)
+		barra_mana.value += 1
 
 func morrer():
 	GameManager.current_scene = get_tree().current_scene.scene_file_path

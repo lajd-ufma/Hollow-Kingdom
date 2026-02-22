@@ -8,7 +8,7 @@ extends Area2D
 var base_x: float
 var time := 0.0
 var sway_seed: float
-var damage:int=3
+var damage:int=1
 
 func _ready():
 	# cada pena ganha um comportamento único

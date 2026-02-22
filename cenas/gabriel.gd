@@ -88,6 +88,7 @@ func _physics_process(delta: float) -> void:
 # ============================================================
 
 func _process(delta):
+	if !GameManager.can_move: return
 	if can_move and on_path:
 		path_follow.progress += speed_path_follow * delta
 

@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 # =====================================================
 
 func _process(delta):
-
+	if !GameManager.can_move: return
 	match current_state:
 
 		# -----------------------------------------

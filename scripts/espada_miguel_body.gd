@@ -2,7 +2,7 @@ extends Area2D
 
 @export var rotation_speed: float = 720.0 # graus por segundo
 
-@export var damage_sword: int = 3
+@export var damage_sword: int = 2
 func _process(delta):
 	rotation_degrees += rotation_speed * delta
 

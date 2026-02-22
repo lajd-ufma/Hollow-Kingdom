@@ -231,7 +231,8 @@ offset_top = -112.0
 offset_right = 84.0
 offset_bottom = -93.0
 size_flags_horizontal = 4
-value = 100.0
+max_value = 150.0
+value = 150.0
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="." unique_id=1349657521]

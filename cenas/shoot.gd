@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var damage := 40
+@export var damage :=10
 @export var speed = 10
 var direction = 1
 # Called when the node enters the scene tree for the first time.
