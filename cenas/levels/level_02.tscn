@@ -152,10 +152,8 @@ script = ExtResource("1_6qidy")
 [node name="generic_level" parent="." unique_id=1856881701 instance=ExtResource("1_fyxh4")]
 next_scene = ExtResource("2_6qidy")
 
-[node name="Gabriel" parent="generic_level" unique_id=1668549009 instance=ExtResource("3_6qidy")]
-position = Vector2(10, 251)
-feather_spawn_interval = 0.18
-shake_time = 1.5
+[node name="player" parent="generic_level" unique_id=832522077 instance=ExtResource("2_p6iee")]
+position = Vector2(178, 590)
 
 [node name="level2" type="TileMapLayer" parent="generic_level" unique_id=1040887405]
 modulate = Color(0.39310426, 0.4403729, 0.55314094, 1)
@@ -163,5 +161,7 @@ scale = Vector2(5, 5)
 tile_map_data = PackedByteArray("AAAHAAMAAAAKAAIAAAAHAAIAAAAKAAEAAAAIAAMAAAALAAIAAAAIAAIAAAALAAEAAAAGAAQAAAAKAA4AAAAGAAMAAAAMAA4AAAAGAAIAAAAMAA4AAAAGAAEAAAAKAA4AAFAHAAEAAAAMAA4AAAAIAAEAAAAMAA4AAAAJAAEAAAANAA4AAGAJAAIAAAAMAA4AAFAJAAMAAAAMAA4AAFAJAAQAAAANAA4AAAAIAAQAAAAMAA4AAAAHAAQAAAAMAA4AAAA=")
 tile_set = SubResource("TileSet_bemd3")
 
-[node name="player" parent="generic_level" unique_id=832522077 instance=ExtResource("2_p6iee")]
-position = Vector2(176, 550)
+[node name="Gabriel" parent="generic_level" unique_id=1668549009 instance=ExtResource("3_6qidy")]
+position = Vector2(10, 251)
+feather_spawn_interval = 0.18
+shake_time = 1.5

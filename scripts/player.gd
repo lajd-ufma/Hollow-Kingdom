@@ -30,6 +30,7 @@ var is_dashing = false
 var is_atacking = false
 var is_atacking_up = false
 var is_atacking_down = false
+var is_shooting := false
 var dash_timer = Timer
 
 @onready var shoot := preload("res://cenas/shoot.tscn")
@@ -79,11 +80,8 @@ func _input(_event: InputEvent) -> void:
 	if GameManager.can_move:
 		jump_logic()
 		if Input.is_action_just_pressed("special") and barra_mana.value-3>0:
+			is_shooting = true
 			barra_mana.value-=3
-			var shoot_instance = shoot.instantiate()
-			shoot_instance.global_position = spawnpoint_shoot.global_position
-			shoot_instance.direction = 1 if facing_right else -1
-			get_tree().root.add_child(shoot_instance)
 		elif Input.is_action_just_pressed("atack"):
 			if Input.is_action_pressed("up"):
 				is_atacking_up = true
@@ -108,7 +106,9 @@ func horizontal_movement():
 	
 func set_animations():
 	var animation_name = "idle"
-	if is_atacking_up:
+	if is_shooting:
+		animation_name = "special"
+	elif is_atacking_up:
 		animation_name = "atack_up"
 	elif is_atacking_down:
 		animation_name = "atack_down"
@@ -191,6 +191,12 @@ func _on_anim_animation_finished(anim_name: StringName) -> void:
 			is_atacking_up = false
 		"atack_down":
 			is_atacking_down = false
+		"special":
+			var shoot_instance = shoot.instantiate()
+			shoot_instance.global_position = spawnpoint_shoot.global_position
+			shoot_instance.direction = 1 if facing_right else -1
+			get_tree().root.add_child(shoot_instance)
+			is_shooting = false
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	dar_dano(body)

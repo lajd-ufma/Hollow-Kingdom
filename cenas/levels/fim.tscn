@@ -68,13 +68,17 @@ position = Vector2(643, 668)
 shape = SubResource("RectangleShape2D_tv6cl")
 
 [node name="player" parent="." unique_id=832522077 instance=ExtResource("1_7wrvp")]
-position = Vector2(-100, 581)
+position = Vector2(93, 581)
 
 [node name="deus" type="Node2D" parent="." unique_id=428676580]
 position = Vector2(1089, 469)
 
 [node name="Sprite2D" type="Sprite2D" parent="deus" unique_id=1115329663]
 scale = Vector2(3, 3)
+texture = ExtResource("2_m11iq")
+
+[node name="PointLight2D" type="PointLight2D" parent="deus/Sprite2D" unique_id=393961170]
+scale = Vector2(1.6666667, 1.6666667)
 texture = ExtResource("2_m11iq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="deus" unique_id=1300956800]
@@ -96,7 +100,3 @@ orbit_velocity_min = -0.4
 orbit_velocity_max = 0.3
 anim_speed_min = 1.0
 anim_speed_max = 2.0
-
-[node name="PointLight2D" type="PointLight2D" parent="deus" unique_id=393961170]
-scale = Vector2(5, 5)
-texture = ExtResource("2_m11iq")

@@ -28,6 +28,7 @@ var return_ratio: float = 0.66
 
 signal scream_started
 signal grito
+signal tomou_dano
 
 
 # ============================================================
@@ -39,7 +40,11 @@ signal grito
 @onready var path_follow: PathFollow2D = $"Path Normal Track/PathFollow2D"
 @onready var anim: AnimationPlayer = $"Path Normal Track/PathFollow2D/miguel_body/AnimationPlayer"
 @onready var attack_timer: Timer = Timer.new()
-
+@onready var hp: ProgressBar = $"Path Normal Track/PathFollow2D/miguel_body/Sprite2D/hp"
+@onready var body: CharacterBody2D = $"Path Normal Track/PathFollow2D/miguel_body"
+@onready var collision_shape_2d: CollisionShape2D = $"Path Normal Track/PathFollow2D/miguel_body/CollisionShape2D"
+@onready var damage_colision_miguel: CollisionShape2D = $"Path Normal Track/PathFollow2D/damage_area_miguel/damage_colision_miguel"
+@onready var animation_player: AnimationPlayer = $"Path Normal Track/PathFollow2D/miguel_body/AnimationPlayer"
 
 # ============================================================
 # MÁQUINA DE ESTADOS
@@ -63,6 +68,8 @@ var using_sweep_path := false
 # ============================================================
 
 func _ready() -> void:
+	set_physics_process(false)
+	tomou_dano.connect(_on_tomou_dano)
 	hitbox.disabled = true
 	randomize()
 
@@ -74,10 +81,9 @@ func _ready() -> void:
 	path_length = normal_path.curve.get_baked_length()
 	virtual_progress = path_follow.progress
 
-
-# ============================================================
-# PROCESS
-# ============================================================
+func _physics_process(delta: float) -> void:
+	body.velocity += body.get_gravity() * delta
+	body.move_and_slide()
 
 func _process(delta: float) -> void:
 	if !GameManager.can_move: return
@@ -278,3 +284,42 @@ func play_anim(name: String) -> void:
 
 	if anim.current_animation != name:
 		anim.play(name)
+		
+# =====================================================
+# SISTEMA DE DANO
+# =====================================================
+
+func _on_tomou_dano(value):
+	print("Miguel tomou dano")
+	hp.value -= value
+
+	if hp.value <= 0:
+		set_process(false)
+		set_physics_process(true)
+		call_deferred("_morrer")
+	else:
+		var damage_tween := get_tree().create_tween()
+		damage_tween.tween_property(self, "modulate", Color.WHITE, 0.2)
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	body.emit_signal("tomou_dano", 3)
+
+func _morrer():
+	if $"../espada_miguel":
+		$"../espada_miguel".queue_free()
+	body.set_collision_mask_value(1,false)
+	body.set_collision_layer_value(3,false)
+	collision_shape_2d.disabled = true
+	hp.visible = false
+	damage_colision_miguel.disabled = true
+	speed = 0 
+	animation_player.play("morrendo")
+
+
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	await get_tree().create_timer(3).timeout
+	if get_parent().has_signal("matou_boss"):
+		get_parent().emit_signal("matou_boss")
+	await get_tree().create_timer(1).timeout
+	queue_free()

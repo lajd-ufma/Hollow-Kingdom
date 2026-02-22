@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ceo6clkb7102u" path="res://scripts/miguel.gd" id="1_gq344"]
 [ext_resource type="Texture2D" uid="uid://btmx7oddldo8p" path="res://assets/Autorais/Miguel-Querubim/Miguel.Querubim.png" id="2_gq344"]
+[ext_resource type="Script" uid="uid://btwrmnjf1jftq" path="res://scripts/miguel_body.gd" id="2_w4wrv"]
+[ext_resource type="Texture2D" uid="uid://rx2jqytnnpk2" path="res://assets/Autorais/Miguel-Querubim/morte.pedrificação.png" id="3_kaujg"]
 [ext_resource type="Texture2D" uid="uid://byky3nyd1msou" path="res://assets/Autorais/Miguel-Querubim/leaol.rugido.png" id="3_y62ys"]
-[ext_resource type="Script" uid="uid://bk5jj6mhpo44l" path="res://cenas/damage_area_miguel.gd" id="4_f5cdv"]
+[ext_resource type="Script" path="res://cenas/damage_area_miguel.gd" id="4_f5cdv"]
 
 [sub_resource type="Curve2D" id="Curve2D_8y14k"]
 _data = {
@@ -120,6 +122,59 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3, 4]
 }
 
+[sub_resource type="Animation" id="Animation_w4wrv"]
+resource_name = "morrendo"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_kaujg")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
 [sub_resource type="Animation" id="Animation_f5cdv"]
 resource_name = "grito"
 loop_mode = 1
@@ -177,8 +232,13 @@ tracks/3/keys = {
 _data = {
 &"RESET": SubResource("Animation_y62ys"),
 &"idle": SubResource("Animation_gq344"),
+&"morrendo": SubResource("Animation_w4wrv"),
 &"scream": SubResource("Animation_f5cdv")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x1s42"]
+radius = 3.0
+height = 17.003006
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kaujg"]
 radius = 77.0
@@ -202,16 +262,21 @@ scale = Vector2(4, 4)
 curve = SubResource("Curve2D_8y14k")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path Normal Track" unique_id=186023621]
-position = Vector2(-73, -45)
+position = Vector2(121.38169, -32.8254)
 rotation = -0.590918
+progress = 321.3395
 rotates = false
 
 [node name="miguel_body" type="CharacterBody2D" parent="Path Normal Track/PathFollow2D" unique_id=1097570599]
 rotation = 0.59016216
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_w4wrv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path Normal Track/PathFollow2D/miguel_body" unique_id=1288328295]
 position = Vector2(-0.25566852, 7.4998083)
 shape = SubResource("CapsuleShape2D_gq344")
+debug_color = Color(6.4495207e-06, 0.5802697, 0.80309707, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="Path Normal Track/PathFollow2D/miguel_body" unique_id=1311783654]
 scale = Vector2(0.25, 0.25)
@@ -219,9 +284,24 @@ texture = ExtResource("2_gq344")
 hframes = 3
 vframes = 2
 
+[node name="hp" type="ProgressBar" parent="Path Normal Track/PathFollow2D/miguel_body/Sprite2D" unique_id=904428516]
+offset_left = -86.92363
+offset_top = -101.06572
+offset_right = 81.07637
+offset_bottom = -82.06572
+size_flags_horizontal = 4
+max_value = 120.0
+value = 120.0
+show_percentage = false
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Path Normal Track/PathFollow2D/miguel_body" unique_id=1364587445]
 libraries/ = SubResource("AnimationLibrary_y62ys")
 autoplay = &"idle"
+
+[node name="colisao_pos_morte" type="CollisionShape2D" parent="Path Normal Track/PathFollow2D/miguel_body" unique_id=1440247883]
+position = Vector2(0.22789234, 29.25018)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_x1s42")
 
 [node name="damage_area_miguel" type="Area2D" parent="Path Normal Track/PathFollow2D" unique_id=1342828423]
 position = Vector2(-47.22937, -67.8114)
@@ -233,6 +313,7 @@ script = ExtResource("4_f5cdv")
 [node name="damage_colision_miguel" type="CollisionShape2D" parent="Path Normal Track/PathFollow2D/damage_area_miguel" unique_id=849068177]
 position = Vector2(309, 152)
 shape = SubResource("CapsuleShape2D_kaujg")
+debug_color = Color(0.99863666, 0, 0.14864406, 0.41960785)
 
 [node name="Path_Sweep" type="Path2D" parent="." unique_id=187408628]
 position = Vector2(686, 333)
@@ -244,4 +325,5 @@ rotation = 3.0883098
 rotates = false
 loop = false
 
+[connection signal="animation_finished" from="Path Normal Track/PathFollow2D/miguel_body/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Path Normal Track/PathFollow2D/damage_area_miguel" to="Path Normal Track/PathFollow2D/damage_area_miguel" method="_on_body_entered"]

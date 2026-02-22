@@ -198,7 +198,7 @@ loop = false
 [node name="rafael_body" type="CharacterBody2D" parent="Path2D/PathFollow2D" unique_id=617477463]
 scale = Vector2(1.5, 1.5)
 collision_layer = 4
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("2_d8352")
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/rafael_body" unique_id=868150142]
@@ -232,8 +232,7 @@ offset_top = -112.0
 offset_right = 84.0
 offset_bottom = -93.0
 size_flags_horizontal = 4
-max_value = 1.0
-value = 1.0
+value = 100.0
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="." unique_id=1349657521]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c350xb76lw2wb"
-path="res://.godot/imported/Player_metroid.png-cd26a81c1c3f89c5c01220605c11a5fc.ctex"
+uid="uid://c7uqatunexfhy"
+path="res://.godot/imported/ataque.1.png-659daab9410628babc17f5d3ee26241f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enemies/Sprites/Player_metroid.png"
-dest_files=["res://.godot/imported/Player_metroid.png-cd26a81c1c3f89c5c01220605c11a5fc.ctex"]
+source_file="res://assets/Autorais/Reizinho/ataque.1.png"
+dest_files=["res://.godot/imported/ataque.1.png-659daab9410628babc17f5d3ee26241f.ctex"]
 
 [params]
 

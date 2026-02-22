@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cynv2lpfs26rj"
-path="res://.godot/imported/enemy_rpg.png-0aa56c5db3f82c176a345912df4e53ee.ctex"
+uid="uid://cqt0521eg0ir2"
+path="res://.godot/imported/ataque_energia.png-76b24ab61b2c7e4c81c50b1d94061fbb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enemies/Sprites/enemy_rpg.png"
-dest_files=["res://.godot/imported/enemy_rpg.png-0aa56c5db3f82c176a345912df4e53ee.ctex"]
+source_file="res://assets/Autorais/Reizinho/ataque_energia.png"
+dest_files=["res://.godot/imported/ataque_energia.png-76b24ab61b2c7e4c81c50b1d94061fbb.ctex"]
 
 [params]
 
