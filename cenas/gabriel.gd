@@ -98,7 +98,7 @@ func _process(delta):
 
 func _on_attack_timer_timeout():
 
-	if is_attacking or is_dead:
+	if is_attacking or is_dead or !GameManager.can_move:
 		return
 
 	is_attacking = true

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://byy7wogu10644"]
 
 [ext_resource type="PackedScene" uid="uid://dtkf27wv3i44f" path="res://cenas/player.tscn" id="1_7wrvp"]
-[ext_resource type="Script" uid="uid://mtx17r3lk0f0" path="res://cenas/levels/fim.gd" id="1_d6jce"]
+[ext_resource type="Script" path="res://cenas/levels/fim.gd" id="1_d6jce"]
 [ext_resource type="Texture2D" uid="uid://dir4cmtdfuipc" path="res://assets/Autorais/deus entre aspas com d minusculo mim perdoe ingreja.png" id="2_m11iq"]
 [ext_resource type="Texture2D" uid="uid://dmm36vpu5gokf" path="res://assets/Autorais/particulas de bencao.png" id="3_gajxo"]
 
@@ -96,3 +96,7 @@ orbit_velocity_min = -0.4
 orbit_velocity_max = 0.3
 anim_speed_min = 1.0
 anim_speed_max = 2.0
+
+[node name="PointLight2D" type="PointLight2D" parent="deus" unique_id=393961170]
+scale = Vector2(5, 5)
+texture = ExtResource("2_m11iq")
