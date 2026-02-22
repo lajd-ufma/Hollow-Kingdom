@@ -3,6 +3,7 @@ extends Node2D
 # ============================================================
 # MOVIMENTO
 # ============================================================
+@onready var hitbox: CollisionShape2D = $"Path Normal Track/PathFollow2D/damage_area_miguel/damage_colision_miguel"
 
 var virtual_progress: float = 0.0
 var path_length: float = 0.0
@@ -25,6 +26,7 @@ var return_ratio: float = 0.66
 @export var shake_time: float = 1.2
 @export var sweep_speed_multiplier: float = 1.4
 
+signal scream_started
 signal grito
 
 
@@ -35,7 +37,7 @@ signal grito
 @onready var normal_path: Path2D = $"Path Normal Track"
 @onready var sweep_path: Path2D = $"Path_Sweep"
 @onready var path_follow: PathFollow2D = $"Path Normal Track/PathFollow2D"
-
+@onready var anim: AnimationPlayer = $"Path Normal Track/PathFollow2D/miguel_body/AnimationPlayer"
 @onready var attack_timer: Timer = Timer.new()
 
 
@@ -61,7 +63,7 @@ var using_sweep_path := false
 # ============================================================
 
 func _ready() -> void:
-
+	hitbox.disabled = true
 	randomize()
 
 	add_child(attack_timer)
@@ -168,7 +170,10 @@ func _arrived_at_center() -> void:
 func _start_scream() -> void:
 
 	state = BossState.SCREAMING
+	play_anim("scream")
+	emit_signal("scream_started")
 	await scream_attack()
+	current_stop_index = (current_stop_index + 1) % stop_ratios.size()
 	state = BossState.WALKING
 
 
@@ -199,7 +204,7 @@ func scream_attack() -> void:
 # ============================================================
 
 func _start_sweep() -> void:
-
+	hitbox.disabled = false
 	state = BossState.SWEEPING
 	using_sweep_path = true
 
@@ -226,7 +231,7 @@ func _do_sweep(delta: float) -> void:
 
 
 func _finish_sweep() -> void:
-
+	hitbox.disabled = true
 	using_sweep_path = false
 
 	# Remove do Path_Sweep
@@ -261,6 +266,14 @@ func _finish_sweep() -> void:
 # ============================================================
 
 func _move_forward(delta: float) -> void:
-
+	play_anim("idle")
 	virtual_progress += speed * delta
 	path_follow.progress = fmod(virtual_progress, path_length)
+
+func play_anim(name: String) -> void:
+
+	if anim == null:
+		return
+
+	if anim.current_animation != name:
+		anim.play(name)
