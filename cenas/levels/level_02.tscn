@@ -153,7 +153,9 @@ script = ExtResource("1_6qidy")
 next_scene = ExtResource("2_6qidy")
 
 [node name="Gabriel" parent="generic_level" unique_id=1668549009 instance=ExtResource("3_6qidy")]
-position = Vector2(0, 360)
+position = Vector2(10, 251)
+feather_spawn_interval = 0.18
+shake_time = 1.5
 
 [node name="level2" type="TileMapLayer" parent="generic_level" unique_id=1040887405]
 modulate = Color(0.39310426, 0.4403729, 0.55314094, 1)

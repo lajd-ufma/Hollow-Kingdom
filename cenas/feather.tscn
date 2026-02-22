@@ -3,16 +3,23 @@
 [ext_resource type="Script" uid="uid://mtgwj0wb5gnu" path="res://scripts/feather.gd" id="1_0r32a"]
 [ext_resource type="Texture2D" uid="uid://ca445uchvhqnh" path="res://assets/Plume 16x16.png" id="1_wtcfe"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0r32a"]
+radius = 5.4081764
+height = 21.926598
 
 [node name="Node2D" type="Area2D" unique_id=270442825]
+scale = Vector2(2, 2)
+collision_layer = 4
 script = ExtResource("1_0r32a")
-max_amplitude = 70.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=194426149]
-shape = SubResource("RectangleShape2D_0e48y")
+position = Vector2(-2, -5.9604645e-08)
+rotation = 0.5954618
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_0r32a")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1687683616]
+scale = Vector2(2, 2)
 texture = ExtResource("1_wtcfe")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
