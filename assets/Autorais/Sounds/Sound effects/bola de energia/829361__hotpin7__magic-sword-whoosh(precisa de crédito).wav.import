@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://byts6p7uaifxe"
+path="res://.godot/imported/829361__hotpin7__magic-sword-whoosh(precisa de crédito).wav-07d86735d472734d479d9f3b4bb6efb3.sample"
+
+[deps]
+
+source_file="res://assets/Autorais/Sounds/Sound effects/bola de energia/829361__hotpin7__magic-sword-whoosh(precisa de crédito).wav"
+dest_files=["res://.godot/imported/829361__hotpin7__magic-sword-whoosh(precisa de crédito).wav-07d86735d472734d479d9f3b4bb6efb3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

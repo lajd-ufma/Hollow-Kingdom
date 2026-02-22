@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://byy7wogu10644"]
 
 [ext_resource type="PackedScene" uid="uid://dtkf27wv3i44f" path="res://cenas/player.tscn" id="1_7wrvp"]
-[ext_resource type="Script" path="res://cenas/levels/fim.gd" id="1_d6jce"]
+[ext_resource type="Script" uid="uid://mtx17r3lk0f0" path="res://cenas/levels/fim.gd" id="1_d6jce"]
 [ext_resource type="Texture2D" uid="uid://dir4cmtdfuipc" path="res://assets/Autorais/deus entre aspas com d minusculo mim perdoe ingreja.png" id="2_m11iq"]
 [ext_resource type="Texture2D" uid="uid://dmm36vpu5gokf" path="res://assets/Autorais/particulas de bencao.png" id="3_gajxo"]
+[ext_resource type="PackedScene" uid="uid://dl4f0hvc1g78f" path="res://cenas/levels/generic_level.tscn" id="5_ainoq"]
+[ext_resource type="PackedScene" uid="uid://btjgk7pls24ag" path="res://cenas/cabou.tscn" id="6_ht7i1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tv6cl"]
 size = Vector2(1588, 69)
@@ -62,6 +64,7 @@ offset_bottom = 720.0
 color = Color(0.020599714, 0.03126721, 0.09367249, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=316165184]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=725650534]
 position = Vector2(643, 668)
@@ -100,3 +103,17 @@ orbit_velocity_min = -0.4
 orbit_velocity_max = 0.3
 anim_speed_min = 1.0
 anim_speed_max = 2.0
+
+[node name="generic_level" parent="." unique_id=1856881701 instance=ExtResource("5_ainoq")]
+next_scene = ExtResource("6_ht7i1")
+
+[node name="chão" parent="generic_level" index="0" unique_id=1958717588]
+visible = false
+
+[node name="parede" parent="generic_level" index="1" unique_id=597840499]
+visible = false
+
+[node name="portal" parent="generic_level" index="4" unique_id=57319832]
+position = Vector2(63, 0)
+
+[editable path="generic_level"]

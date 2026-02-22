@@ -158,7 +158,7 @@ func spawn_rain_bar(x_position: float):
 # ============================================================
 
 func slam_attack_sequence() -> void:
-
+	if is_dead: return
 	can_move = false
 
 	await move_to_visual_center()
@@ -223,7 +223,7 @@ func slam_attack_sequence() -> void:
 # ============================================================
 
 func move_to_visual_center() -> void:
-
+	if is_dead: return
 	var cam = get_viewport().get_camera_2d()
 	if cam == null:
 		return
@@ -278,6 +278,7 @@ func shake_warning() -> void:
 # ============================================================
 
 func slam_down() -> void:
+	if is_dead: return
 	hitbox_collision_shape_2d.disabled = false
 	while pivot.global_position.y < ground_y:
 
@@ -293,6 +294,7 @@ func slam_down() -> void:
 # ============================================================
 
 func return_from_slam() -> void:
+	if is_dead: return
 	var target_y: float = original_parent.global_position.y
 
 	while abs(pivot.global_position.y - target_y) > 2.0:
@@ -304,8 +306,7 @@ func return_from_slam() -> void:
 # ============================================================
 
 func spawn_shockwaves():
-
-	if shockwave_scene == null:
+	if shockwave_scene == null or is_dead:
 		return
 
 	var left_wave = shockwave_scene.instantiate()
@@ -391,7 +392,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		"abrino_asa":
 			animation_player.play("idle")
 		"morrendo":
-			await get_tree().create_timer(3).timeout
+			await get_tree().create_timer(1).timeout
 			if get_parent().has_signal("matou_boss"):
 				get_parent().emit_signal("matou_boss")
 			await get_tree().create_timer(1).timeout

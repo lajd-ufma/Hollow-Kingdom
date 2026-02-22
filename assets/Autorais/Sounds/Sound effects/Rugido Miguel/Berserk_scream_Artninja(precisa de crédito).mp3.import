@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8a25uev5wy2r"
+path="res://.godot/imported/Berserk_scream_Artninja(precisa de crédito).mp3-85f968de92a63872daa2d57b3cd7a592.mp3str"
+
+[deps]
+
+source_file="res://assets/Autorais/Sounds/Sound effects/Rugido Miguel/Berserk_scream_Artninja(precisa de crédito).mp3"
+dest_files=["res://.godot/imported/Berserk_scream_Artninja(precisa de crédito).mp3-85f968de92a63872daa2d57b3cd7a592.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

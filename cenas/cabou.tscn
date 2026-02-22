@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://btjgk7pls24ag"]
+
+[ext_resource type="Script" uid="uid://on1w3blwpkul" path="res://scripts/cabou.gd" id="1_kjjm4"]
+
+[node name="cabou" type="Control" unique_id=979266829]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_kjjm4")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=40111192]
+layout_mode = 0
+offset_left = -199.0
+offset_right = 1476.0
+offset_bottom = 747.0
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=17617969]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=281174528]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "Parabéns por ter concluído!!!"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -28,6 +28,7 @@ func _ready() -> void:
 # (VOCÊ VAI CONECTAR NO EDITOR)
 # ============================================================
 func _on_miguel_scream_started() -> void:
+	await get_tree().create_timer(0.5).timeout
 	warning_active = true
 	sprite.visible = true
 

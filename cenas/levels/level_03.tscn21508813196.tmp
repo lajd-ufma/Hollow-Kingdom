@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://chd0njslhjpjl"]
+
+[ext_resource type="Script" uid="uid://ud6a7gill754" path="res://cenas/levels/level_03.gd" id="1_i7t7g"]
+[ext_resource type="PackedScene" uid="uid://dl4f0hvc1g78f" path="res://cenas/levels/generic_level.tscn" id="1_qw63v"]
+[ext_resource type="PackedScene" uid="uid://dtkf27wv3i44f" path="res://cenas/player.tscn" id="2_j4d2i"]
+[ext_resource type="PackedScene" uid="uid://c7du6jm0c3cfy" path="res://cenas/miguel.tscn" id="3_j4d2i"]
+[ext_resource type="PackedScene" uid="uid://byy7wogu10644" path="res://cenas/levels/fim.tscn" id="3_vre5c"]
+[ext_resource type="PackedScene" uid="uid://dk7fkmainpcop" path="res://cenas/espada_miguel.tscn" id="4_0w3gl"]
+[ext_resource type="Script" path="res://scripts/hitbox_grito.gd" id="5_i7t7g"]
+[ext_resource type="Texture2D" uid="uid://qbu8tev0pyh5" path="res://assets/New Piskel (2).png" id="6_10gww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0w3gl"]
+size = Vector2(1171, 87)
+
+[node name="level03" type="Node" unique_id=1323927398]
+script = ExtResource("1_i7t7g")
+
+[node name="generic_level" parent="." unique_id=1856881701 instance=ExtResource("1_qw63v")]
+next_scene = ExtResource("3_vre5c")
+
+[node name="Miguel" parent="generic_level" unique_id=711381819 instance=ExtResource("3_j4d2i")]
+position = Vector2(-41, -9)
+
+[node name="espada_miguel" parent="generic_level" unique_id=808010027 instance=ExtResource("4_0w3gl")]
+position = Vector2(-31, -59)
+
+[node name="hitbox_grito" type="Area2D" parent="generic_level" unique_id=45862424]
+script = ExtResource("5_i7t7g")
+active_time = 0.3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="generic_level/hitbox_grito" unique_id=626821980]
+position = Vector2(647.5, 581.5)
+shape = SubResource("RectangleShape2D_0w3gl")
+
+[node name="Sprite2D" type="Sprite2D" parent="generic_level/hitbox_grito" unique_id=112414039]
+modulate = Color(0.9990464, 0.7542235, 1, 0.22745098)
+position = Vector2(645.5, 583.5)
+scale = Vector2(36.78125, 2.7187483)
+texture = ExtResource("6_10gww")
+
+[node name="player" parent="generic_level" unique_id=832522077 instance=ExtResource("2_j4d2i")]
+position = Vector2(145, 590)
+jump_speed = 500.0
+
+[connection signal="grito" from="generic_level/Miguel" to="generic_level/hitbox_grito" method="_on_miguel_grito"]
+[connection signal="scream_started" from="generic_level/Miguel" to="generic_level/hitbox_grito" method="_on_miguel_scream_started"]
+[connection signal="body_entered" from="generic_level/hitbox_grito" to="generic_level" method="_on_hitbox_grito_body_entered"]
+[connection signal="body_entered" from="generic_level/hitbox_grito" to="generic_level/hitbox_grito" method="_on_body_entered"]

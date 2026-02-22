@@ -45,6 +45,8 @@ signal tomou_dano
 @onready var collision_shape_2d: CollisionShape2D = $"Path Normal Track/PathFollow2D/miguel_body/CollisionShape2D"
 @onready var damage_colision_miguel: CollisionShape2D = $"Path Normal Track/PathFollow2D/damage_area_miguel/damage_colision_miguel"
 @onready var animation_player: AnimationPlayer = $"Path Normal Track/PathFollow2D/miguel_body/AnimationPlayer"
+@onready var grito_sound: AudioStreamPlayer2D = $"Path Normal Track/PathFollow2D/miguel_body/grito_sound"
+@onready var cpu_particles_2d: CPUParticles2D = $"Path Normal Track/PathFollow2D/miguel_body/CPUParticles2D"
 
 # ============================================================
 # MÁQUINA DE ESTADOS
@@ -175,14 +177,14 @@ func _arrived_at_center() -> void:
 # ============================================================
 
 func _start_scream() -> void:
-
 	state = BossState.SCREAMING
+	grito_sound.play()
+	cpu_particles_2d.emitting = true
 	play_anim("scream")
 	emit_signal("scream_started")
 	await scream_attack()
 	current_stop_index = (current_stop_index + 1) % stop_ratios.size()
 	state = BossState.WALKING
-
 
 func scream_attack() -> void:
 
@@ -318,7 +320,7 @@ func _morrer():
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(1).timeout
 	if get_parent().has_signal("matou_boss"):
 		get_parent().emit_signal("matou_boss")
 	await get_tree().create_timer(1).timeout

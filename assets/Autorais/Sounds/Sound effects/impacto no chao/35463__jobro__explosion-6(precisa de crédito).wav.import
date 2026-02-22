@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bxk7u71185w06"
+path="res://.godot/imported/35463__jobro__explosion-6(precisa de crédito).wav-cdd2a582686ea173dbc8ab88de23e04c.sample"
+
+[deps]
+
+source_file="res://assets/Autorais/Sounds/Sound effects/impacto no chao/35463__jobro__explosion-6(precisa de crédito).wav"
+dest_files=["res://.godot/imported/35463__jobro__explosion-6(precisa de crédito).wav-cdd2a582686ea173dbc8ab88de23e04c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

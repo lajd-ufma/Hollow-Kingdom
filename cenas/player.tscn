@@ -2,10 +2,15 @@
 
 [ext_resource type="Script" uid="uid://f7by6sfqxjiq" path="res://scripts/player.gd" id="1_unwft"]
 [ext_resource type="Texture2D" uid="uid://dewk8mqm66877" path="res://assets/Autorais/Reizinho/parado,png.png" id="2_kthid"]
+[ext_resource type="Texture2D" uid="uid://bepui0ykkuj53" path="res://assets/Autorais/Reizinho/ataque-cima.png" id="3_4y2i1"]
 [ext_resource type="Texture2D" uid="uid://chjjx0l7avl8j" path="res://assets/Autorais/Reizinho/pulandopng.png" id="3_15dsx"]
 [ext_resource type="Script" uid="uid://bkk4ck07264n2" path="res://cenas/camera_2d.gd" id="3_kthid"]
+[ext_resource type="Texture2D" uid="uid://c7uqatunexfhy" path="res://assets/Autorais/Reizinho/ataque.1.png" id="3_ogt8j"]
 [ext_resource type="Texture2D" uid="uid://diij1mi0sawth" path="res://assets/Autorais/Reizinho/correndo.andando.png" id="3_xojfc"]
+[ext_resource type="Texture2D" uid="uid://b475o71ufyl6o" path="res://assets/Autorais/Reizinho/ataque-baixo.png" id="4_rijvs"]
 [ext_resource type="Texture2D" uid="uid://cqt0521eg0ir2" path="res://assets/Autorais/Reizinho/ataque_energia.png" id="5_8v4ht"]
+[ext_resource type="AudioStream" uid="uid://do6bbhsf6dvjx" path="res://assets/Autorais/Sounds/Sound effects/dash/qubodup__cloud-poof(precisa de crédito).wav" id="10_mp0j6"]
+[ext_resource type="AudioStream" uid="uid://byts6p7uaifxe" path="res://assets/Autorais/Sounds/Sound effects/bola de energia/829361__hotpin7__magic-sword-whoosh(precisa de crédito).wav" id="11_8bq56"]
 
 [sub_resource type="Animation" id="Animation_xojfc"]
 length = 0.001
@@ -96,7 +101,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_unwft"]
 resource_name = "atack"
-length = 0.4
+length = 0.5
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -110,10 +115,58 @@ tracks/0/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_ogt8j")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
 
 [sub_resource type="Animation" id="Animation_rijvs"]
 resource_name = "atack_down"
-length = 0.4
+length = 0.5
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -127,10 +180,58 @@ tracks/0/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_rijvs")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
 
 [sub_resource type="Animation" id="Animation_kthid"]
 resource_name = "atack_up"
-length = 0.4
+length = 0.5
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -139,10 +240,58 @@ tracks/0/path = NodePath("hitbox/atack_up:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.15, 0.25),
+"times": PackedFloat32Array(0.1, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_4y2i1")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_8v4ht"]
@@ -422,13 +571,18 @@ scale = Vector2(3, 3)
 collision_mask = 11
 safe_margin = 0.14
 script = ExtResource("1_unwft")
+move_speed = 400.0
+gravity = 800.0
+jump_speed = 600.0
+acceleration = 500.0
 wall_slide = 30
+dash_speed = 900.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1838191734]
 texture = ExtResource("2_kthid")
 hframes = 2
 vframes = 2
-frame = 2
+frame = 1
 
 [node name="anim" type="AnimationPlayer" parent="." unique_id=2109076097]
 libraries/ = SubResource("AnimationLibrary_rijvs")
@@ -506,6 +660,16 @@ limit_top = 0
 limit_right = 1280
 limit_bottom = 720
 script = ExtResource("3_kthid")
+
+[node name="sounds" type="Node" parent="." unique_id=1215286620]
+
+[node name="dash_sound" type="AudioStreamPlayer" parent="sounds" unique_id=1649893131]
+stream = ExtResource("10_mp0j6")
+volume_db = -15.0
+
+[node name="special_sound" type="AudioStreamPlayer" parent="sounds" unique_id=738109467]
+stream = ExtResource("11_8bq56")
+volume_db = -15.0
 
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

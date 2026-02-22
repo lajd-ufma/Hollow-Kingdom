@@ -63,7 +63,7 @@ text = "Programação e Game Design"
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
-text = "Pedro, Diego, Vinicius, Flávio, Emerton"
+text = "Pedro Pinheiro, Diego Oliveira, Vinicius Azambuja, Flávio Santana, Emerton Frazão"
 
 [node name="EquipeArte" type="Label" parent="VBoxContainer" unique_id=549871667]
 layout_mode = 2
@@ -77,7 +77,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 24
-text = "Airam"
+text = "Airam Mendes"
 
 [node name="EquipeMusica" type="Label" parent="VBoxContainer" unique_id=1826929141]
 layout_mode = 2
@@ -90,7 +90,7 @@ text = "Música"
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
-text = "Emerton"
+text = "Emerton Frazão"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1907819926]
 layout_mode = 1

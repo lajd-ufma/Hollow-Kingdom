@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bcha6mpd83hbr"
+path="res://.godot/imported/322504__liamg_sfx__explosion-6a.wav-3d31862e6d1c93b6bcce6fbab994f2ab.sample"
+
+[deps]
+
+source_file="res://assets/Autorais/Sounds/Sound effects/impacto no chao/322504__liamg_sfx__explosion-6a.wav"
+dest_files=["res://.godot/imported/322504__liamg_sfx__explosion-6a.wav-3d31862e6d1c93b6bcce6fbab994f2ab.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

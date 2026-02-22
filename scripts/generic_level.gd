@@ -3,9 +3,8 @@ extends Node2D
 @export var next_scene:PackedScene
 signal matou_boss
 
-
-
 func _ready() -> void:
+	MusicManager.tocar_musica01()
 	$transition/CanvasLayer.visible = true
 	$transition/AnimationPlayer.play("fade-in")
 	matou_boss.connect(_on_matou_boss)

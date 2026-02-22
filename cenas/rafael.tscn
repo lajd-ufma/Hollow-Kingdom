@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://qiwlignayksh" path="res://assets/Autorais/etc/explosao2.png" id="4_6e11c"]
 [ext_resource type="Texture2D" uid="uid://d3q3ys8y2cyn4" path="res://assets/Autorais/Rafael-Ophanim/ophanim.só-Recovered-Recovered-sheet.png" id="5_6e11c"]
 [ext_resource type="Texture2D" uid="uid://btmn5machjukf" path="res://assets/Autorais/Rafael-Ophanim/rafael.morto.png" id="5_b58vs"]
+[ext_resource type="AudioStream" uid="uid://bxmpamh0evghn" path="res://assets/Autorais/Sounds/Sound effects/impacto no chao/750822__artninja__custom_short_explosion_impact_sound(precisa de crédito).wav" id="7_54faa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fbfpt"]
 radius = 47.539455
@@ -183,9 +184,7 @@ height = 80.00001
 [node name="Rafael" type="Node2D" unique_id=2110402888]
 script = ExtResource("1_usr7g")
 return_pause_time = 1.0
-speed_path_follow = null
 ground_pause_time = 3.0
-dive_arc_height = null
 
 [node name="Path2D" type="Path2D" parent="." unique_id=482869886]
 scale = Vector2(0.95023924, 1)
@@ -225,6 +224,9 @@ autoplay = &"idle"
 position = Vector2(0, 32)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_b58vs")
+
+[node name="pancadanochao_sound" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D/rafael_body" unique_id=1999091814]
+stream = ExtResource("7_54faa")
 
 [node name="hp" type="ProgressBar" parent="Path2D/PathFollow2D" unique_id=1739844759]
 offset_left = -84.0

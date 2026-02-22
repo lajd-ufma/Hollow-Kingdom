@@ -24,6 +24,7 @@ extends Node2D
 @onready var player: CharacterBody2D = $"../player"
 @onready var animation_player: AnimationPlayer = $Path2D/PathFollow2D/rafael_body/AnimationPlayer
 @onready var collision_shape_2d: CollisionShape2D = $Path2D/PathFollow2D/rafael_body/CollisionShape2D
+@onready var pancadanochao_sound: AudioStreamPlayer2D = $Path2D/PathFollow2D/rafael_body/pancadanochao_sound
 
 signal tomou_dano
 
@@ -190,6 +191,7 @@ func _end_dive():
 	hitbox_collision_shape_2d.disabled = true
 
 	#  CAMERA SHAKE
+	pancadanochao_sound.play()
 	camera.shake(12.0)
 
 	current_state = "ground_pause"
@@ -254,7 +256,7 @@ func _on_tomou_dano(value):
 		call_deferred("_morrer")
 	else:
 		var damage_tween := get_tree().create_tween()
-		damage_tween.tween_property(self, "modulate", Color.WHITE, 0.2)
+		damage_tween.tween_property(self, "modulate", Color.GRAY, 0.2)
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
@@ -266,12 +268,12 @@ func _morrer():
 	collision_shape_2d.disabled = true
 	hp.visible = false
 	hitbox_collision_shape_2d.disabled = true
-	speed_path_follow = 0 
+	speed_path_follow = 0
 	animation_player.play("morrendo")
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(1).timeout
 	if get_parent().has_signal("matou_boss"):
 		get_parent().emit_signal("matou_boss")
 	await get_tree().create_timer(1).timeout

@@ -7,7 +7,6 @@
 layer = 100
 
 [node name="MenuGameOver" type="Control" parent="." unique_id=1104531241]
-process_mode = 3
 modulate = Color(1, 1, 1, 0.5882353)
 layout_mode = 3
 anchors_preset = 15

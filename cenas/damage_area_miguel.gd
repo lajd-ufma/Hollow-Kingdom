@@ -13,4 +13,3 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	body.emit_signal("tomou_dano", 3)# Replace with function body.
-	print("bumbum do pedro")

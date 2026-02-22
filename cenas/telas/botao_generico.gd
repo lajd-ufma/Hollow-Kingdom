@@ -4,7 +4,6 @@ extends Button
 var float_tween: Tween
 
 func _ready():
-	# Pivot no centro para o efeito de scale não "fugir" do lugar
 	pivot_offset = size / 2
 	
 	pluma.modulate.a = 0

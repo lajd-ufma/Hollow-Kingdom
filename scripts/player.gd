@@ -38,6 +38,9 @@ var dash_timer = Timer
 @onready var barra_mana: ProgressBar = $hud/mana
 @onready var hp: ProgressBar = $hud/hp
 
+@onready var dash_sound: AudioStreamPlayer = $sounds/dash_sound
+@onready var special_sound: AudioStreamPlayer = $sounds/special_sound
+
 signal tomou_dano
 
 func _process(delta: float) -> void:
@@ -81,6 +84,7 @@ func _input(_event: InputEvent) -> void:
 		jump_logic()
 		if Input.is_action_just_pressed("special") and barra_mana.value-3>0:
 			is_shooting = true
+			special_sound.play()
 			barra_mana.value-=3
 		elif Input.is_action_just_pressed("atack"):
 			if Input.is_action_pressed("up"):
@@ -103,7 +107,7 @@ func horizontal_movement():
 		dash_number -= 1
 		dash_key_pressed = 1
 		dash()
-	
+
 func set_animations():
 	var animation_name = "idle"
 	if is_shooting:
@@ -128,7 +132,7 @@ func flip():
 		facing_right = false 
 		scale.x = scale.y * -1
 		wall_x_force = -200.0
-		
+
 func jump_logic():
 	if is_on_floor():
 		dash_number = 1
@@ -136,7 +140,6 @@ func jump_logic():
 		if Input.is_action_just_pressed("jump"):
 			jump_amount -= 1
 			velocity.y -= lerp(jump_speed, acceleration, 0.1)
-
 	else:
 		if jump_amount > 0:
 			if Input.is_action_just_pressed("jump"):
@@ -178,6 +181,10 @@ func dash():
 
 func dash_started():
 	if is_dashing == true:
+		var tween := get_tree().create_tween()
+		tween.tween_property(self, "modulate", Color.from_rgba8(255,255,255,100),0.1)
+		tween.tween_property(self, "modulate", Color.from_rgba8(255,255,255,255),0.1)
+		dash_sound.play()
 		dash_key_pressed = 1
 		await get_tree().create_timer(0.16).timeout
 		is_dashing = false
