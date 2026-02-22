@@ -26,17 +26,29 @@ grow_vertical = 2
 color = Color(0.08293293, 0.20813304, 0.2610408, 1)
 script = ExtResource("1_4f56o")
 
-[node name="GrupoImagens" type="Node2D" parent="." unique_id=1821750198]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="." unique_id=641511497]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.7778
+stretch_mode = 3
 
-[node name="imagem" type="Sprite2D" parent="GrupoImagens" unique_id=78994184]
-position = Vector2(639, 51)
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer" unique_id=314858419]
+layout_mode = 2
+size_flags_horizontal = 4
 texture = ExtResource("2_ab2d8")
+stretch_mode = 2
 
-[node name="imagem2" type="Sprite2D" parent="GrupoImagens" unique_id=2085415832]
-modulate = Color(1, 1, 1, 0.42745098)
-position = Vector2(632, 354)
-skew = 0.017453292
+[node name="TextureRect2" type="TextureRect" parent="AspectRatioContainer" unique_id=2104670939]
+modulate = Color(1, 1, 1, 0.5882353)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("3_ayrtv")
+stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2095450787]
 layout_mode = 1
