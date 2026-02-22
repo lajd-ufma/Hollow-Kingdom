@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://72tksmsay8hh"]
 
+[ext_resource type="Script" uid="uid://oeram1wqibsy" path="res://cenas/levels/level_02.gd" id="1_6qidy"]
 [ext_resource type="PackedScene" uid="uid://dl4f0hvc1g78f" path="res://cenas/levels/generic_level.tscn" id="1_fyxh4"]
 [ext_resource type="PackedScene" uid="uid://chd0njslhjpjl" path="res://cenas/levels/level_03.tscn" id="2_6qidy"]
 [ext_resource type="PackedScene" uid="uid://dtkf27wv3i44f" path="res://cenas/player.tscn" id="2_p6iee"]
 [ext_resource type="PackedScene" uid="uid://d30kaype5tjfu" path="res://cenas/gabriel.tscn" id="3_6qidy"]
 
 [node name="level_02" type="Node" unique_id=752441562]
+script = ExtResource("1_6qidy")
 
 [node name="generic_level" parent="." unique_id=1856881701 instance=ExtResource("1_fyxh4")]
 next_scene = ExtResource("2_6qidy")

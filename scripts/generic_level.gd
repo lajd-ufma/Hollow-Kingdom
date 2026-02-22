@@ -9,7 +9,7 @@ func _ready() -> void:
 	matou_boss.connect(_on_matou_boss)
 	$portal.monitoring = false
 	$arrow_to_next_scene.visible = false
-	Dialogic.start("Rafael")
+	
 
 func _on_matou_boss():
 	$portal.monitoring = true

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://chd0njslhjpjl"]
 
+[ext_resource type="Script" uid="uid://ud6a7gill754" path="res://cenas/levels/level_03.gd" id="1_i7t7g"]
 [ext_resource type="PackedScene" uid="uid://dl4f0hvc1g78f" path="res://cenas/levels/generic_level.tscn" id="1_qw63v"]
 [ext_resource type="PackedScene" uid="uid://dtkf27wv3i44f" path="res://cenas/player.tscn" id="2_j4d2i"]
 [ext_resource type="PackedScene" uid="uid://c7du6jm0c3cfy" path="res://cenas/miguel.tscn" id="3_j4d2i"]
@@ -11,6 +12,7 @@
 size = Vector2(1171, 87)
 
 [node name="level03" type="Node" unique_id=1323927398]
+script = ExtResource("1_i7t7g")
 
 [node name="generic_level" parent="." unique_id=1856881701 instance=ExtResource("1_qw63v")]
 
