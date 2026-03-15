@@ -170,10 +170,11 @@ func slam_attack_sequence() -> void:
 	stored_progress = path_follow.progress
 
 	original_parent = pivot.get_parent()
-	pivot.reparent(get_tree().current_scene, true) 
+	pivot.reparent(get_tree().current_scene, true)
 
 	await shake_warning()
 	await slam_down()
+
 	spawn_shockwaves()
 
 	await get_tree().create_timer(vulnerable_time).timeout
@@ -183,42 +184,9 @@ func slam_attack_sequence() -> void:
 	pivot.reparent(original_parent, true)
 
 	path_follow.progress = stored_progress
-
 	pivot.position = Vector2.ZERO
 
 	can_move = true
-
-	original_parent = pivot.get_parent()
-
-	var saved_global := pivot.global_position
-
-	original_parent.remove_child(pivot)
-	get_tree().current_scene.add_child(pivot)
-
-	pivot.global_position = saved_global
-
-	await shake_warning()
-	await slam_down()
-
-	spawn_shockwaves()
-
-	await get_tree().create_timer(vulnerable_time).timeout
-
-	await return_from_slam()
-
-	saved_global = pivot.global_position
-
-	get_tree().current_scene.remove_child(pivot)
-	original_parent.add_child(pivot)
-
-	pivot.global_position = saved_global
-	pivot.position = Vector2.ZERO
-
-	path_follow.progress = stored_progress
-
-
-	can_move = true
-
 
 # ============================================================
 # IR PRO CENTRO VISUAL DA TELA
@@ -282,7 +250,7 @@ func shake_warning() -> void:
 func slam_down() -> void:
 	if is_dead: return
 	hitbox_collision_shape_2d.disabled = false
-	while pivot.global_position.y < ground_y:
+	while pivot.global_position.y < ground_y and !is_dead:
 
 		pivot.global_position.y += slam_speed * get_process_delta_time()
 
@@ -299,7 +267,7 @@ func return_from_slam() -> void:
 	if is_dead: return
 	var target_y: float = original_parent.global_position.y
 
-	while abs(pivot.global_position.y - target_y) > 2.0:
+	while abs(pivot.global_position.y - target_y) > 2.0 and !is_dead:
 		pivot.global_position.y = lerp(pivot.global_position.y, target_y, 0.15)
 		await get_tree().process_frame
 
