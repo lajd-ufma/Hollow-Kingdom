@@ -57,6 +57,7 @@ func _on_tomou_dano(value):
 			print("morreu")
 			call_deferred("morrer")
 		else:
+			hit_stop(0.02, 0.1)
 			var tween_damage :=get_tree().create_tween().set_loops(3)
 			var tween_knockback :=get_tree().create_tween().set_parallel(true)
 			set_collision_mask_value(3, false)
@@ -216,6 +217,7 @@ func _on_hitbox_down_body_entered(body: Node2D) -> void:
 
 func dar_dano(body):
 	if body.has_signal("tomou_dano"):
+		hit_stop(0.02, 0.2)
 		body.emit_signal("tomou_dano", 10)
 		barra_mana.value += 1
 
@@ -224,3 +226,8 @@ func morrer():
 	get_tree().paused = true 
 	var menu_morte = load("res://cenas/telas/MenuGameOver.tscn").instantiate()
 	get_tree().root.add_child(menu_morte)
+
+func hit_stop(duration := 0.05, slow := 0.0):
+	Engine.time_scale = slow
+	await get_tree().create_timer(duration, true).timeout
+	Engine.time_scale = 1.0

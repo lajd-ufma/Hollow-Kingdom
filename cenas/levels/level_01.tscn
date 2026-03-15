@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://itq8g3lhyr2h"]
 
-[ext_resource type="Script" path="res://cenas/levels/level_01.gd" id="1_4i0gb"]
+[ext_resource type="Script" uid="uid://c1vnhg2oo2v12" path="res://cenas/levels/level_01.gd" id="1_4i0gb"]
 [ext_resource type="PackedScene" uid="uid://dl4f0hvc1g78f" path="res://cenas/levels/generic_level.tscn" id="1_brxef"]
 [ext_resource type="PackedScene" uid="uid://72tksmsay8hh" path="res://cenas/levels/level_02.tscn" id="2_4i0gb"]
 [ext_resource type="PackedScene" uid="uid://dtkf27wv3i44f" path="res://cenas/player.tscn" id="2_dcprf"]

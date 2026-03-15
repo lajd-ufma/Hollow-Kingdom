@@ -374,7 +374,7 @@ func _on_tomou_dano(value):
 		is_dead = true
 		call_deferred("_morrer")
 	else:
-		sprite.modulate = Color(1, 0, 0) # vermelho
+		sprite.modulate = Color(1.0, 0.315, 0.25, 1.0) # vermelho
 		await get_tree().create_timer(0.1).timeout
 		sprite.modulate = Color(1, 1, 1) # normal
 		var damage_tween := get_tree().create_tween()
